@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_armor_drawing"
+        android:icon="@drawable/logo"
+        android:title="Draw"/>
+
+    <item
+        android:id="@+id/ic_talent_tree"
+        android:icon="@drawable/logo"
+        android:title="Tree"/>
+
+    <item
+        android:id="@+id/ic_mini_game"
+        android:icon="@drawable/logo"
+        android:title="Game"/>
+
+</menu>
