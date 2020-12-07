@@ -24,15 +24,15 @@ class LoginActivity : AppCompatActivity() {
 
 
         //test
-         val url = "http://192.168.1.84:3000"
-
         val username = "terry"
         val password = "secret"
         val age = 22
 
+        val serverUrl = "http://10.0.2.2:3000"
+
         val stringRequest  = object : StringRequest(
                 Request.Method.GET,
-                "http://192.168.1.84:3000/hi",
+                "$serverUrl/hi",
                 Response.Listener { res ->
                     println(res)
                 },
@@ -67,13 +67,6 @@ class LoginActivity : AppCompatActivity() {
                 { error ->
                     println(error)
                 }
-        )
-
-        postRequest.retryPolicy = DefaultRetryPolicy(
-                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
-                // 0 means no retry
-                0, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
-                1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
 
         Volley.newRequestQueue(this).add(stringRequest)
