@@ -3,6 +3,7 @@ package com.beyondthebrushmobile
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.android.volley.RequestQueue
 import kotlinx.android.synthetic.main.activity_main.*
 
 
