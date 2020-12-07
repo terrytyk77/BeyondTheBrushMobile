@@ -3,14 +3,14 @@ package com.beyondthebrushmobile
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beyondthebrushmobile.fragments.LoginFragment
-import com.beyondthebrushmobile.fragments.SignupFragment
+import com.beyondthebrushmobile.fragments.SignUpFragment
+import com.beyondthebrushmobile.variables.SERVER_URL
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -22,33 +22,25 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //    Test    \\
 
-        //test
-        val username = "terry"
-        val password = "secret"
-        val age = 22
+        //Setup Request Queue
+        val requestQueue = Volley.newRequestQueue(this)
 
-        val serverUrl = "http://10.0.2.2:3000"
-
-        val stringRequest  = object : StringRequest(
-                Request.Method.GET,
-                "$serverUrl/hi",
-                Response.Listener { res ->
-                    println(res)
-                },
-                Response.ErrorListener { error ->
-                    println(error)
-                }
-        ){
-            override fun getParams(): MutableMap<String, String> {
-                val params = HashMap<String, String>()
-                params["username"] = username
-                params["password"] = password
-                params["age"] = age.toString()
-                return super.getParams()
+        // Get Request
+        val stringRequest = JsonObjectRequest(
+            Request.Method.GET,
+            "$SERVER_URL/hi",
+            null,
+            { response ->
+                println(response.toString())
+            },
+            { error ->
+                println(error)
             }
-        }
+        )
 
+        // JSON Creation for The Post Request
         val postData = JSONObject()
         try {
             postData.put("name", "Terry")
@@ -57,9 +49,10 @@ class LoginActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
+        // Post Request
         val postRequest  = JsonObjectRequest(
                 Request.Method.POST,
-                "http://192.168.1.84:3000/bye",
+                "$SERVER_URL/bye",
                 postData,
                 { res ->
                     println(res)
@@ -69,8 +62,12 @@ class LoginActivity : AppCompatActivity() {
                 }
         )
 
-        Volley.newRequestQueue(this).add(stringRequest)
-        Volley.newRequestQueue(this).add(postRequest)
+        //Adding the Requests to The Request Queue
+        requestQueue.add(stringRequest)
+        requestQueue.add(postRequest)
+
+        //------------------------------||
+
 
         //Change to the login fragment
         loginFragmentButton.setOnClickListener{
@@ -79,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Change to the sign up fragment
         signupFragmentButton.setOnClickListener{
-            fragmentManager(SignupFragment())
+            fragmentManager(SignUpFragment())
         }
 
         //Set the initial fragment of the layout
