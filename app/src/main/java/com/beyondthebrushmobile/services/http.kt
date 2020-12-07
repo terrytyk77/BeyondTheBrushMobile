@@ -1,52 +1,75 @@
 package com.beyondthebrushmobile.services
-//
-//
-//import android.app.Notification
-//import com.beyondthebrushmobile.variables.SERVER_URL
-//import okhttp3.*
-//import okhttp3.RequestBody.Companion.toRequestBody
-//import java.io.IOException
-//
-//object http {
-//
-//    fun get(path: String, toBeRun : (m: String?) -> Unit){
-//        val url = SERVER_URL + path
-//        val request = Request.Builder().url(url).build()
-//
-//        val client = OkHttpClient()
-//        client.newCall(request).enqueue(object : Callback {
-//
-//            override fun onResponse(call: Call, response: Response) {
-//                val body = response?.body?.string()
-//                toBeRun(body)
-//            }
-//
-//            override fun onFailure(call: Call, e: IOException) {
-//                println(e)
-//            }
-//        })
-//    }
-//
-//    fun post(path: String, json : String, toBeRun : (m: String?) -> Unit){
-//        val url = SERVER_URL + path
-//
-//        val body = json.toRequestBody()
-//        val request = Request.Builder().url(url).post(body).build()
-//
-//        val client = OkHttpClient()
-//        client.newCall(request).enqueue(object : Callback {
-//
-//            override fun onResponse(call: Call, response: Response) {
-//                val body = response?.body?.string()
-//                toBeRun(body)
-//            }
-//
-//            override fun onFailure(call: Call, e: IOException) {
-//                println(e)
-//            }
-//        })
-//    }
-//
-//}
-//
-//
+
+import android.content.Context
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.beyondthebrushmobile.variables.SERVER_URL
+import org.json.JSONObject
+
+object http {
+
+    fun get(context: Context, url: String, toBeRun: (m: String?) -> Unit){
+        //Create the request queue
+        val requestQueue = Volley.newRequestQueue(context)
+
+        var formatedURL : String
+
+        if(url[0] == '/'){
+            formatedURL = "$SERVER_URL$url"
+        }else{
+            formatedURL = "$SERVER_URL/$url"
+        }
+
+
+        val stringRequest  = StringRequest(
+            Request.Method.GET,
+            formatedURL,
+            { res ->
+                toBeRun(res)
+            },
+            { error ->
+                println(error)
+            }
+        )
+
+        //Adding the Requests to The Request Queue
+        requestQueue.add(stringRequest)
+    }
+
+
+
+    fun post(context: Context, body : JSONObject, url: String, toBeRun: (m: JSONObject?) -> Unit){
+
+        //Create the request queue
+        val requestQueue = Volley.newRequestQueue(context)
+
+        var formatedURL : String
+
+        if(url[0] == '/'){
+            formatedURL = "$SERVER_URL$url"
+        }else{
+            formatedURL = "$SERVER_URL/$url"
+        }
+
+        val postRequest  = JsonObjectRequest(
+            Request.Method.POST,
+            formatedURL,
+            body,
+            { res ->
+                toBeRun(res)
+            },
+            { error ->
+                println(error)
+            }
+        )
+
+        //Adding the Requests to The Request Queue
+        requestQueue.add(postRequest)
+    }
+
+}
+
+

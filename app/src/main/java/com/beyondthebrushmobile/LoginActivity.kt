@@ -8,9 +8,13 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.beyondthebrushmobile.classes.login_request
 import com.beyondthebrushmobile.fragments.LoginFragment
 import com.beyondthebrushmobile.fragments.SignUpFragment
+import com.beyondthebrushmobile.services.http
 import com.beyondthebrushmobile.variables.SERVER_URL
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -22,51 +26,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //    Test    \\
-
-        //Setup Request Queue
-        val requestQueue = Volley.newRequestQueue(this)
-
-        // Get Request
-        val stringRequest = JsonObjectRequest(
-            Request.Method.GET,
-            "$SERVER_URL/hi",
-            null,
-            { response ->
-                println(response.toString())
-            },
-            { error ->
-                println(error)
-            }
-        )
-
-        // JSON Creation for The Post Request
-        val postData = JSONObject()
-        try {
-            postData.put("name", "Terry")
-            postData.put("age", 22)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-        // Post Request
-        val postRequest  = JsonObjectRequest(
-                Request.Method.POST,
-                "$SERVER_URL/bye",
-                postData,
-                { res ->
-                    println(res)
-                },
-                { error ->
-                    println(error)
-                }
-        )
-
-        //Adding the Requests to The Request Queue
-        requestQueue.add(stringRequest)
-        requestQueue.add(postRequest)
-
-        //------------------------------||
 
 
         //Change to the login fragment
