@@ -1,6 +1,16 @@
 <resources>
+
+    <!--Images descriptions-->
     <string name="app_name">BeyondTheBrushMobile</string>
     <string name="logo">BeyondTheBrushLogo</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Place holders for text inputs-->
+    <string name="password">password…</string>
+    <string name="username">username…</string>
+
+    <!-- Fragments buttons text -->
+    <string name="login">Login!</string>
+    <string name="sign_up">Sign up!</string>
+    <string name="repeat_password">repeat password…</string>
+    <string name="email">email…</string>
 </resources>

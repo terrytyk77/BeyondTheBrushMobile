@@ -1,22 +1,20 @@
 package com.beyondthebrushmobile
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.beyondthebrushmobile.classes.login_request
 import com.beyondthebrushmobile.fragments.LoginFragment
 import com.beyondthebrushmobile.fragments.SignUpFragment
+import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.services.http
-import com.beyondthebrushmobile.variables.SERVER_URL
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_login.*
-import org.json.JSONException
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.signupPassword2
+import kotlinx.android.synthetic.main.fragment_login.signupUsername
+import kotlinx.android.synthetic.main.fragment_sign_up.*
 import org.json.JSONObject
 
 
@@ -25,7 +23,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
 
 
         //Change to the login fragment
@@ -43,11 +40,97 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+
     private fun fragmentManager(fragment: Fragment):Unit{
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.login_fragment_layout, fragment)
             commit()
         }
+    }
+
+    fun loginAttempt(view: View) {
+        //Get the data inputs
+        val usernameData : String = signupUsername.text.toString()
+        val passwordData : String = signupPassword2.text.toString()
+
+        val postData = JSONObject().put("name", usernameData).put("password", passwordData)
+        http.post(this, postData, "account/login"){
+
+            //Check the response
+            if(it?.getBoolean("status") == true){
+
+                //Create the intent
+                val intent = Intent(this, MainActivity::class.java)
+
+                //Send him to the following activity
+                startActivity(intent)
+
+                //Locally save the user data
+                currentUserFiles.userData = it
+
+            }else{
+                //Notify the user about the problem
+                Toast.makeText(this, it?.getString("result"), Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
+    fun signupAttempt(view: View){
+
+        //Get the data inputs||
+            
+            //Credentials
+            val usernameData : String = signupUsername.text.toString()
+            val emailData : String = signupEmail.text.toString()
+        
+            //passwords
+            val passwordData : String = signupPassword.text.toString()
+            val passwordData2: String = signupPassword2.text.toString()
+        //___________________||
+
+        //Check all the inputs
+        if(passwordData != passwordData2){
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+        }else if(passwordData.length < 6){
+            Toast.makeText(this, "Password too short", Toast.LENGTH_SHORT).show()
+        }else if(emailData.isEmpty() || emailData.length > 30){
+            Toast.makeText(this, "Invalid email size", Toast.LENGTH_SHORT).show()
+        }else if(usernameData.length < 4){
+            Toast.makeText(this, "Username too small", Toast.LENGTH_SHORT).show()
+        }else if(usernameData.length > 15){
+            Toast.makeText(this, "Username too big", Toast.LENGTH_SHORT).show()
+        }else{
+
+            //Contact the server
+            val postData = JSONObject().put("name", usernameData).put("password", passwordData).put("email", emailData)
+
+            http.post(this, postData, "account/signup"){
+
+                //Check the response
+                if(it?.getBoolean("status") == true){
+
+                    //Create the intent
+                    val intent = Intent(this, MainActivity::class.java)
+
+                    //Send him to the following activity
+                    startActivity(intent)
+
+                    //Locally save the user data
+                    currentUserFiles.userData = it
+
+                }else{
+
+                    //Notify the user about the problem
+                    Toast.makeText(this, it?.getString("result"), Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        }
+
+
+
+
     }
 
 }
