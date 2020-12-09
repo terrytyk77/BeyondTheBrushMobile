@@ -124,13 +124,7 @@ class LoginActivity : AppCompatActivity() {
                     //Notify the user about the problem
                     Toast.makeText(this, it?.getString("result"), Toast.LENGTH_SHORT).show()
                 }
-
             }
         }
-
-
-
-
     }
-
 }

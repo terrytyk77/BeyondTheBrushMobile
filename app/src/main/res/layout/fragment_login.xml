@@ -63,12 +63,12 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:paddingLeft="5dp"
+        android:paddingStart="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupUsername"
-        android:paddingStart="5dp"
-        tools:ignore="RtlSymmetry"
-        android:autofillHints="" />
+        android:autofillHints=""
+        tools:ignore="RtlSymmetry"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,13 @@
 package com.beyondthebrushmobile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
-import com.android.volley.RequestQueue
+import com.beyondthebrushmobile.fragments.ArmorDrawingFragment
+import com.beyondthebrushmobile.fragments.MiniGameFragment
+import com.beyondthebrushmobile.fragments.TalentTreeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -30,4 +34,10 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
+
+    fun enterDrawingRoom(view: View){
+        val intent = Intent(this, DrawingRoomActivity::class.java)
+        startActivity(intent)
+    }
+
 }
