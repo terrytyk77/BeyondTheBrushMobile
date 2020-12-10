@@ -24,15 +24,30 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //0 stands for login
+        //1 stands for sign_up
+        var currentFrag : Int = 0;
+        fragmentChanger.text = onLoginFrag
 
-        //Change to the login fragment
-        loginFragmentButton.setOnClickListener{
-            fragmentManager(LoginFragment())
-        }
+        //Add the text click event
+        fragmentChanger.setOnClickListener{
 
-        //Change to the sign up fragment
-        signupFragmentButton.setOnClickListener{
-            fragmentManager(SignUpFragment())
+            when(currentFrag){
+                0 -> {
+                    //Change to sign_up
+                    fragmentChanger.text = onSignUpFrag
+                    fragmentManager(SignUpFragment())
+                    currentFrag = 1
+
+                }
+                1 -> {
+                    //Change to login
+                    fragmentChanger.text = onLoginFrag
+                    fragmentManager(LoginFragment())
+                    currentFrag = 0
+                }
+            }
+
         }
 
         //Set the initial fragment of the layout

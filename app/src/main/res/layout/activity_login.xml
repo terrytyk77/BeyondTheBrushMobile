@@ -14,18 +14,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cobblestone_background" />
+        app:srcCompat="@drawable/cobblestone_background"
+        android:contentDescription="@string/background" />
 
     <FrameLayout
         android:id="@+id/login_fragment_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginFragmentButton"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/logo">
 
     </FrameLayout>
 
@@ -36,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="@string/logo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -45,27 +46,34 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <Button
-        android:id="@+id/loginFragmentButton"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:onClick="ChangeToLoginFragment"
-        android:text="Login"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        android:layout_height="59dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:srcCompat="@drawable/bottom_bar"
+        android:contentDescription="@string/bottom_bar" />
 
-    <Button
-        android:id="@+id/signupFragmentButton"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/fragmentChanger"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ChangeToSignupFragment"
-        android:text="Signup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/loginFragmentButton" />
+        android:fontFamily="sans-serif-medium"
+        android:gravity="right"
+        tools:text="Do not have an account?"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment_layout"
+        app:layout_constraintVertical_bias="0.71000004"
+        tools:ignore="RtlHardcoded" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
