@@ -9,6 +9,7 @@ import com.beyondthebrushmobile.fragments.ArmorDrawingFragment
 import com.beyondthebrushmobile.fragments.MiniGameFragment
 import com.beyondthebrushmobile.fragments.TalentTreeFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_armor_drawing.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +37,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun enterDrawingRoom(view: View){
+
+//        if(view.id != null){
+//            println((view.id.toString())
+//        }
+        when (view.id){
+//            R.id.imageView1 -> println("image1")
+//            R.id.imageView2 -> println("image2")
+//            R.id.imageView3 -> println("image3")
+//            R.id.imageView4 -> println("image4")
+//            R.id.imageView5 -> println("image5")
+//            R.id.imageView6 -> println("image6")
+        }
+
         val intent = Intent(this, DrawingRoomActivity::class.java)
         startActivity(intent)
     }
