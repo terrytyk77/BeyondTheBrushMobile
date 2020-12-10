@@ -2,3 +2,12 @@ package com.beyondthebrushmobile.variables
 
 //This variable holds the URL used in HTTP requests
 const val SERVER_URL = "http://10.0.2.2:3000"
+
+//Login errors\\
+const val DifferentPasswordsError = "Passwords do not match"
+const val PasswordShort = "Password too short"
+const val InvalidEmailSize = "Invalid email size"
+
+const val UsernameTooSmall = "The username is too small"
+const val UsernameTooBig = "The username is too big"
+//_____________\\
