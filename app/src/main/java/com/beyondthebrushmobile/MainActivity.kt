@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.GridView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.beyondthebrushmobile.classes.ArmorProfile
 import com.beyondthebrushmobile.fragments.ArmorDrawingFragment
 import com.beyondthebrushmobile.fragments.MiniGameFragment
 import com.beyondthebrushmobile.fragments.TalentTreeFragment
@@ -13,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_armor_drawing.*
 
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,23 +39,4 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
-
-    fun enterDrawingRoom(view: View){
-
-//        if(view.id != null){
-//            println((view.id.toString())
-//        }
-        when (view.id){
-//            R.id.imageView1 -> println("image1")
-//            R.id.imageView2 -> println("image2")
-//            R.id.imageView3 -> println("image3")
-//            R.id.imageView4 -> println("image4")
-//            R.id.imageView5 -> println("image5")
-//            R.id.imageView6 -> println("image6")
-        }
-
-        val intent = Intent(this, DrawingRoomActivity::class.java)
-        startActivity(intent)
-    }
-
 }

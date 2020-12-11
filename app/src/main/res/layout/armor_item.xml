@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/armor_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/armor_name"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/armor_image"
+        android:gravity="center"/>
+
+</RelativeLayout>
