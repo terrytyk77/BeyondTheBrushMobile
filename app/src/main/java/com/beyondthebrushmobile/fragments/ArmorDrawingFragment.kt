@@ -9,11 +9,9 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import com.beyondthebrushmobile.ArmorAdapter
 import com.beyondthebrushmobile.DrawingRoomActivity
-import com.beyondthebrushmobile.LoginActivity
 import com.beyondthebrushmobile.R
 import com.beyondthebrushmobile.classes.ArmorProfile
-import com.beyondthebrushmobile.variables.armors
-import kotlinx.android.synthetic.main.fragment_armor_drawing.*
+
 
 
 class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
@@ -52,6 +50,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
 
         var armorAdapter:ArmorAdapter?=null
+        val armors = arrayListOf<ArmorProfile>()
 
         // Filling The Armor Array
         armors.add(ArmorProfile(R.drawable.logo,"Head"))
