@@ -11,6 +11,7 @@ import com.beyondthebrushmobile.fragments.SignUpFragment
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.services.http
 import com.beyondthebrushmobile.variables.*
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_login.signupPassword2
 import kotlinx.android.synthetic.main.fragment_login.signupUsername
@@ -20,13 +21,16 @@ import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
+    private var currentFrag : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         //0 stands for login
         //1 stands for sign_up
-        var currentFrag : Int = 0;
+        currentFrag = 0;
+
         fragmentChanger.text = onLoginFrag
 
         //Add the text click event
@@ -56,11 +60,42 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+    //Handle the movement between fragments
     private fun fragmentManager(fragment: Fragment):Unit{
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.login_fragment_layout, fragment)
             commit()
         }
+    }
+
+    //Handle the user feedback
+    private fun userFeedback(message: String?){
+
+        //Just a random element from the login activity for parent reference
+        val contextView = findViewById<View>(R.id.logo)
+
+        //The component used for the anchor
+        var anchorHolder : android.view.View = findViewById(R.id.login_fragment_layout)
+
+        when(currentFrag){
+            0 ->{
+                //on login
+                anchorHolder = findViewById(R.id.loginButton)
+
+            }
+            1 ->{
+                //on sign_up
+                anchorHolder = findViewById(R.id.signupButton)
+            }
+        }
+
+        if(message != null){
+            Snackbar
+                    .make(contextView, message, Snackbar.LENGTH_SHORT) //Create the snack bar
+                    .setAnchorView(anchorHolder) //Snack bar location
+                    .show() //Display the snack bar
+        }
+
     }
 
     fun loginAttempt(view: View) {
@@ -85,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
 
             }else{
                 //Notify the user about the problem
-                Toast.makeText(this, it?.getString("result"), Toast.LENGTH_SHORT).show()
+                userFeedback(it?.getString("result"))
             }
 
         }
@@ -106,15 +141,15 @@ class LoginActivity : AppCompatActivity() {
 
         //Check all the inputs
         if(passwordData != passwordData2){
-            Toast.makeText(this, DifferentPasswordsError, Toast.LENGTH_SHORT).show()
+            userFeedback(DifferentPasswordsError)
         }else if(passwordData.length < 6){
-            Toast.makeText(this, PasswordShort, Toast.LENGTH_SHORT).show()
+            userFeedback(PasswordShort)
         }else if(emailData.isEmpty() || emailData.length > 30){
-            Toast.makeText(this, InvalidEmailSize, Toast.LENGTH_SHORT).show()
+            userFeedback(InvalidEmailSize)
         }else if(usernameData.length < 4){
-            Toast.makeText(this, UsernameTooSmall, Toast.LENGTH_SHORT).show()
+            userFeedback(UsernameTooSmall)
         }else if(usernameData.length > 15){
-            Toast.makeText(this, UsernameTooBig, Toast.LENGTH_SHORT).show()
+            userFeedback(UsernameTooBig)
         }else{
 
             //Contact the server
@@ -137,7 +172,7 @@ class LoginActivity : AppCompatActivity() {
                 }else{
 
                     //Notify the user about the problem
-                    Toast.makeText(this, it?.getString("result"), Toast.LENGTH_SHORT).show()
+                    userFeedback(it?.getString("result"))
                 }
             }
         }
