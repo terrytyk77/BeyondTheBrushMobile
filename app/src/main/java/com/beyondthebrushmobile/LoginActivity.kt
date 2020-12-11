@@ -10,8 +10,8 @@ import com.beyondthebrushmobile.fragments.LoginFragment
 import com.beyondthebrushmobile.fragments.SignUpFragment
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.services.http
+import com.beyondthebrushmobile.variables.*
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.signupPassword2
 import kotlinx.android.synthetic.main.fragment_login.signupUsername
 import kotlinx.android.synthetic.main.fragment_sign_up.*
@@ -24,15 +24,30 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //0 stands for login
+        //1 stands for sign_up
+        var currentFrag : Int = 0;
+        fragmentChanger.text = onLoginFrag
 
-        //Change to the login fragment
-        loginFragmentButton.setOnClickListener{
-            fragmentManager(LoginFragment())
-        }
+        //Add the text click event
+        fragmentChanger.setOnClickListener{
 
-        //Change to the sign up fragment
-        signupFragmentButton.setOnClickListener{
-            fragmentManager(SignUpFragment())
+            when(currentFrag){
+                0 -> {
+                    //Change to sign_up
+                    fragmentChanger.text = onSignUpFrag
+                    fragmentManager(SignUpFragment())
+                    currentFrag = 1
+
+                }
+                1 -> {
+                    //Change to login
+                    fragmentChanger.text = onLoginFrag
+                    fragmentManager(LoginFragment())
+                    currentFrag = 0
+                }
+            }
+
         }
 
         //Set the initial fragment of the layout
@@ -91,15 +106,15 @@ class LoginActivity : AppCompatActivity() {
 
         //Check all the inputs
         if(passwordData != passwordData2){
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, DifferentPasswordsError, Toast.LENGTH_SHORT).show()
         }else if(passwordData.length < 6){
-            Toast.makeText(this, "Password too short", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, PasswordShort, Toast.LENGTH_SHORT).show()
         }else if(emailData.isEmpty() || emailData.length > 30){
-            Toast.makeText(this, "Invalid email size", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, InvalidEmailSize, Toast.LENGTH_SHORT).show()
         }else if(usernameData.length < 4){
-            Toast.makeText(this, "Username too small", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, UsernameTooSmall, Toast.LENGTH_SHORT).show()
         }else if(usernameData.length > 15){
-            Toast.makeText(this, "Username too big", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, UsernameTooBig, Toast.LENGTH_SHORT).show()
         }else{
 
             //Contact the server
