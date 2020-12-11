@@ -16,6 +16,9 @@ import com.beyondthebrushmobile.classes.ArmorProfile
 
 class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
+    private var armorAdapter:ArmorAdapter?=null
+    private val armors = arrayListOf<ArmorProfile>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View?
     {
@@ -49,8 +52,6 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         }
 
 
-        var armorAdapter:ArmorAdapter?=null
-        val armors = arrayListOf<ArmorProfile>()
 
         // Filling The Armor Array
         armors.add(ArmorProfile(R.drawable.logo,"Head"))

@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
         val contextView = findViewById<View>(R.id.logo)
 
         //The component used for the anchor
-        var anchorHolder : android.view.View = findViewById(R.id.login_fragment_layout)
+        var anchorHolder : View = findViewById(R.id.login_fragment_layout)
 
         when(currentFrag){
             0 ->{
