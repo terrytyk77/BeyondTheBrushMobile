@@ -19,6 +19,12 @@ class DrawingRoomActivity: AppCompatActivity() {
         val myCanvasView = this.findViewById(R.id.drawingCanvas) as DrawingCanvas
 
 
+        //Moved the color slider
+        colorSlider.setOnColorChangeListener { colorBarPosition, alphaBarPosition, color ->
+            //Send the data to the canvas
+            myCanvasView.changeBrushColor(color)
+        }
+
         // Set the Slider Initial Position
         strokeSizeSlider.value = initialStrokeSize
 

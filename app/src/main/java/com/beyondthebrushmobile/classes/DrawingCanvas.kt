@@ -35,7 +35,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.black, null)
 
     //Default Stroke Color
-    private val drawColor = ResourcesCompat.getColor(resources, R.color.white, null)
+    private var drawColor = ResourcesCompat.getColor(resources, R.color.white, null)
 
     //Default Brush Initiated
     private var paint = createBrush()
@@ -118,6 +118,10 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     }
 
     fun changeStrokeSize(newSize:Float){
-        paint = createBrush(newStrokeSize = newSize)
+        paint = createBrush(newStrokeSize = newSize, newColor = paint.color)
+    }
+
+    fun changeBrushColor(color : Int){
+        paint = createBrush(newColor = color, newStrokeSize = paint.strokeWidth)
     }
 }
