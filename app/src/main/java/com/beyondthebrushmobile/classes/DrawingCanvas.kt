@@ -3,26 +3,23 @@ package com.beyondthebrushmobile.classes
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
 import com.beyondthebrushmobile.R
+import com.beyondthebrushmobile.variables.initialStrokeSize
 import kotlin.math.abs
+
 
 class DrawingCanvas @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr)  {
 
-    private val strokeSize = 12f // has to be float
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
 
     private lateinit var frame: Rect
-
-
-    private val backgroundColor = ResourcesCompat.getColor(resources, R.color.black, null)
 
     private var motionTouchEventX = 0f
     private var motionTouchEventY = 0f
@@ -34,26 +31,19 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
     private var path = Path()
 
+    //Default Background Color
+    private val backgroundColor = ResourcesCompat.getColor(resources, R.color.black, null)
+
+    //Default Stroke Color
     private val drawColor = ResourcesCompat.getColor(resources, R.color.white, null)
 
-    private val paint = Paint().apply {
-        color = drawColor
-        // Smooths out edges of what is drawn without affecting shape.
-        isAntiAlias = true
-        // Dithering affects how colors with higher-precision than the device are down-sampled.
-        isDither = true
-        style = Paint.Style.STROKE // default: FILL
-        strokeJoin = Paint.Join.ROUND // default: MITER
-        strokeCap = Paint.Cap.ROUND // default: BUTT
-        strokeWidth = strokeSize // default: Hairline-width (really thin)
-    }
+    //Default Brush Initiated
+    private var paint = createBrush()
 
 
     // Called when the view should render its content.
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        // DRAW STUFF HERE
-
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
         canvas?.drawRect(frame, paint)
     }
@@ -66,7 +56,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         extraCanvas.drawColor(backgroundColor)
 
         // Calculate a rectangular frame around the picture.
-        val inset = 40
+        val inset = 30
         frame = Rect(inset, inset, width - inset, height - inset)
 
     }
@@ -74,7 +64,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     override fun onTouchEvent(event: MotionEvent): Boolean {
         motionTouchEventX = event.x
         motionTouchEventY = event.y
-
+        println(event.action)
         when (event.action) {
             MotionEvent.ACTION_DOWN -> touchStart()
             MotionEvent.ACTION_MOVE -> touchMove()
@@ -113,5 +103,21 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         path.reset()
     }
 
+    private fun createBrush(newColor:Int = drawColor, newStrokeSize:Float = initialStrokeSize, newStyle: Paint.Style = Paint.Style.STROKE): Paint{
+        return Paint().apply {
+            color = newColor
+            style = newStyle // default: FILL
+            strokeWidth = newStrokeSize // default: Hairline-width (really thin)
+            // Smooths out edges of what is drawn without affecting shape.
+            isAntiAlias = true
+            // Dithering affects how colors with higher-precision than the device are down-sampled.
+            isDither = true
+            strokeJoin = Paint.Join.ROUND // default: MITER
+            strokeCap = Paint.Cap.ROUND // default: BUTT
+        }
+    }
 
+    fun changeStrokeSize(newSize:Float){
+        paint = createBrush(newStrokeSize = newSize)
+    }
 }

@@ -21,11 +21,25 @@
 
 
     <com.beyondthebrushmobile.classes.DrawingCanvas
+        android:id="@+id/drawingCanvas"
         android:layout_width="300dp"
         android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/strokeSizeSlider"
+        android:layout_width="300dp"
+        android:layout_height="12dp"
+        android:valueFrom="0.0"
+        android:valueTo="30.0"
+        android:stepSize="1.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawingCanvas" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
