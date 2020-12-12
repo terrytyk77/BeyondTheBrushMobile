@@ -20,7 +20,7 @@ class DrawingRoomActivity: AppCompatActivity() {
 
 
         //Moved the color slider
-        colorSlider.setOnColorChangeListener { colorBarPosition, alphaBarPosition, color ->
+        colorSlider.setOnColorChangeListener { _, _, color ->
             //Send the data to the canvas
             myCanvasView.changeBrushColor(color)
         }
