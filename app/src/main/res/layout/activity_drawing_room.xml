@@ -1,73 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-
-    <!--TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DrawingRoom"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /-->
-
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <com.beyondthebrushmobile.classes.DrawingCanvas
         android:id="@+id/drawingCanvas"
         android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
 
-
-    <com.rtugeek.android.colorseekbar.ColorSeekBar
+    <codes.side.andcolorpicker.hsl.HSLColorPickerSeekBar
         android:id="@+id/colorSlider"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="325dp"
+        android:layout_height="40dp"
+        android:indeterminate="false"
+        app:hslColoringMode="pure"
+        app:hslMode="hue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/strokeSizeSlider" />
 
-        app:barHeight="10dp"
-        app:showThumb="true"
-        app:barRadius="10px"
-        app:colorSeeds="@array/material_colors"
+    <codes.side.andcolorpicker.alpha.HSLAlphaColorPickerSeekBar
+        android:id="@+id/alphaSlider"
+        android:layout_width="325dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/strokeSizeSlider"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/lightSlider"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <codes.side.andcolorpicker.hsl.HSLColorPickerSeekBar
+        android:id="@+id/lightSlider"
+        android:layout_width="325dp"
+        android:layout_height="40dp"
+        app:hslColoringMode="pure"
+        app:hslMode="lightness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorSlider" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/strokeSizeSlider"
-        android:layout_width="0dp"
-        android:layout_height="12dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
         android:stepSize="1.0"
         android:valueFrom="0.0"
         android:valueTo="30.0"
-
-        app:trackHeight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawingCanvas"
-        app:layout_constraintVertical_bias="0.231" />
+        app:layout_constraintVertical_bias="0.131"
+        app:trackHeight="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

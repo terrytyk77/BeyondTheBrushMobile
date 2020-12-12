@@ -7,8 +7,14 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
+import codes.side.andcolorpicker.converter.setFromColorInt
+import codes.side.andcolorpicker.converter.toColorInt
+import codes.side.andcolorpicker.model.IntegerHSLColor
 import com.beyondthebrushmobile.R
-import com.beyondthebrushmobile.variables.initialStrokeSize
+import com.beyondthebrushmobile.variables.defaultStrokeSize
 import kotlin.math.abs
 
 
@@ -35,7 +41,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.black, null)
 
     //Default Stroke Color
-    private var drawColor = ResourcesCompat.getColor(resources, R.color.white, null)
+    var defaultColor: IntegerHSLColor = colorRGB(255,0,0)
 
     //Default Brush Initiated
     private var paint = createBrush()
@@ -45,7 +51,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
-        canvas?.drawRect(frame, createBrush())
+        canvas?.drawRect(frame, createBrush(newColor = colorRGB(255,255,255)))
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
@@ -72,7 +78,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         }
         return true
     }
-
 
     private fun touchStart() {
         path.reset()
@@ -103,9 +108,9 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         path.reset()
     }
 
-    private fun createBrush(newColor:Int = drawColor, newStrokeSize:Float = initialStrokeSize, newStyle: Paint.Style = Paint.Style.STROKE): Paint{
+    private fun createBrush(newColor: IntegerHSLColor = defaultColor, newStrokeSize:Float = defaultStrokeSize, newStyle: Paint.Style = Paint.Style.STROKE): Paint{
         return Paint().apply {
-            color = newColor
+            color = newColor.toColorInt()
             style = newStyle // default: FILL
             strokeWidth = newStrokeSize // default: Hairline-width (really thin)
             // Smooths out edges of what is drawn without affecting shape.
@@ -117,11 +122,27 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         }
     }
 
-    fun changeStrokeSize(newSize:Float){
-        paint = createBrush(newStrokeSize = newSize, newColor = paint.color)
+    private fun colorRGB(r:Int, g:Int, b:Int) : IntegerHSLColor{
+        return IntegerHSLColor().also {
+            it.setFromColorInt(
+                Color.rgb(
+                    r,
+                    g,
+                    b
+                )
+            )
+        }
     }
 
-    fun changeBrushColor(color : Int){
-        paint = createBrush(newColor = color, newStrokeSize = paint.strokeWidth)
-    }
+    // Public Functions that can be used in DrawingActivity ||
+
+        fun changeStrokeSize(newSize:Float){
+            paint = createBrush(newStrokeSize = newSize, newColor = colorRGB(paint.color.red, paint.color.green, paint.color.blue))
+        }
+
+        fun changeBrushColor(color: IntegerHSLColor){
+            paint = createBrush(newColor = color, newStrokeSize = paint.strokeWidth)
+        }
+
+    //------------------------------------------------------||
 }

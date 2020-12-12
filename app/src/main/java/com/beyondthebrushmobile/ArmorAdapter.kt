@@ -8,7 +8,6 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.beyondthebrushmobile.classes.ArmorProfile
-import kotlinx.android.synthetic.main.armor_item.view.*
 
 class ArmorAdapter (var itemList:ArrayList<ArmorProfile>,var context:Context) : BaseAdapter(){
 
