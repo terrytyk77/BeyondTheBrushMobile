@@ -3,6 +3,7 @@ package com.beyondthebrushmobile.classes
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Base64
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -14,7 +15,11 @@ import codes.side.andcolorpicker.converter.setFromColorInt
 import codes.side.andcolorpicker.converter.toColorInt
 import codes.side.andcolorpicker.model.IntegerHSLColor
 import com.beyondthebrushmobile.R
+import com.beyondthebrushmobile.services.http
 import com.beyondthebrushmobile.variables.defaultStrokeSize
+import org.json.JSONObject
+import java.io.ByteArrayOutputStream
+import java.io.FileOutputStream
 import kotlin.math.abs
 
 
@@ -38,10 +43,10 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     private var path = Path()
 
     //Default Background Color
-    private val backgroundColor = ResourcesCompat.getColor(resources, R.color.black, null)
+    private val backgroundColor = Color.TRANSPARENT
 
     //Default Stroke Color
-    var defaultColor: IntegerHSLColor = colorRGB(255,0,0)
+    var defaultColor: IntegerHSLColor = colorRGB(255, 0, 0)
 
     //Default Brush Initiated
     private var paint = createBrush()
@@ -51,7 +56,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
-        canvas?.drawRect(frame, createBrush(newColor = colorRGB(255,255,255)))
+        //canvas?.drawRect(frame, createBrush(newColor = colorRGB(255, 255, 255)))
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
@@ -59,7 +64,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         if (::extraBitmap.isInitialized) extraBitmap.recycle()
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         extraCanvas = Canvas(extraBitmap)
-        extraCanvas.drawColor(backgroundColor)
+        //extraCanvas.drawColor(backgroundColor)
 
         // Calculate a rectangular frame around the picture.
         val inset = 30
@@ -93,7 +98,12 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
             /* QuadTo() adds a quadratic bezier from the last point,
             approaching control point (x1,y1), and ending at (x2,y2). */
-            path.quadTo(currentX, currentY, (motionTouchEventX + currentX) / 2, (motionTouchEventY + currentY) / 2)
+            path.quadTo(
+                currentX,
+                currentY,
+                (motionTouchEventX + currentX) / 2,
+                (motionTouchEventY + currentY) / 2
+            )
             currentX = motionTouchEventX
             currentY = motionTouchEventY
 
@@ -108,7 +118,11 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         path.reset()
     }
 
-    private fun createBrush(newColor: IntegerHSLColor = defaultColor, newStrokeSize:Float = defaultStrokeSize, newStyle: Paint.Style = Paint.Style.STROKE): Paint{
+    private fun createBrush(
+        newColor: IntegerHSLColor = defaultColor,
+        newStrokeSize: Float = defaultStrokeSize,
+        newStyle: Paint.Style = Paint.Style.STROKE
+    ): Paint{
         return Paint().apply {
             color = newColor.toColorInt()
             style = newStyle // default: FILL
@@ -122,7 +136,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         }
     }
 
-    private fun colorRGB(r:Int, g:Int, b:Int) : IntegerHSLColor{
+    private fun colorRGB(r: Int, g: Int, b: Int) : IntegerHSLColor{
         return IntegerHSLColor().also {
             it.setFromColorInt(
                 Color.rgb(
@@ -136,12 +150,36 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
     // Public Functions that can be used in DrawingActivity ||
 
-        fun changeStrokeSize(newSize:Float){
-            paint = createBrush(newStrokeSize = newSize, newColor = colorRGB(paint.color.red, paint.color.green, paint.color.blue))
+        fun changeStrokeSize(newSize: Float){
+            paint = createBrush(
+                newStrokeSize = newSize, newColor = colorRGB(
+                    paint.color.red,
+                    paint.color.green,
+                    paint.color.blue
+                )
+            )
         }
 
         fun changeBrushColor(color: IntegerHSLColor){
             paint = createBrush(newColor = color, newStrokeSize = paint.strokeWidth)
+        }
+
+        fun createAnImage(view : Context, toBeRun : (m: JSONObject) -> Unit){
+
+            //Conversion||
+                var baos = ByteArrayOutputStream()
+                extraBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+                var imageBytes = baos.toByteArray()
+                var encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+            //__________||
+
+            val postData = JSONObject().put("image", encodedImage)
+
+            //Close the stream
+            baos.close()
+
+            //Call the function
+            toBeRun(postData)
         }
 
     //------------------------------------------------------||
