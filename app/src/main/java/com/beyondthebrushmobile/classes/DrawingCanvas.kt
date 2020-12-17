@@ -164,6 +164,10 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             paint = createBrush(newColor = color, newStrokeSize = paint.strokeWidth)
         }
 
+        fun canvasReset(){
+            extraBitmap.eraseColor(backgroundColor);
+        }
+
         fun createAnImage(view : Context, toBeRun : (m: JSONObject) -> Unit){
 
             //Conversion||
