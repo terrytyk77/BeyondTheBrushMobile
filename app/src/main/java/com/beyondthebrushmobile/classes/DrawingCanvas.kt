@@ -22,6 +22,8 @@ class DrawingCanvas @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr)  {
 
+    private var mypath = arrayListOf<Path>()
+
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
 
@@ -38,7 +40,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     private var path = Path()
 
     //Default Background Color
-    private val backgroundColor = ResourcesCompat.getColor(resources, R.color.black, null)
+    private val backgroundColor = Color.TRANSPARENT
 
     //Default Stroke Color
     var defaultColor: IntegerHSLColor = colorRGB(255,0,0)
@@ -70,7 +72,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     override fun onTouchEvent(event: MotionEvent): Boolean {
         motionTouchEventX = event.x
         motionTouchEventY = event.y
-        println(event.action)
         when (event.action) {
             MotionEvent.ACTION_DOWN -> touchStart()
             MotionEvent.ACTION_MOVE -> touchMove()
@@ -105,6 +106,8 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
     private fun touchUp() {
         // Reset the path so it doesn't get drawn again.
+        mypath.add(path)
+        println(mypath)
         path.reset()
     }
 
@@ -142,6 +145,10 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
         fun changeBrushColor(color: IntegerHSLColor){
             paint = createBrush(newColor = color, newStrokeSize = paint.strokeWidth)
+        }
+
+        fun canvasReset(){
+            extraBitmap.eraseColor(backgroundColor);
         }
 
     //------------------------------------------------------||

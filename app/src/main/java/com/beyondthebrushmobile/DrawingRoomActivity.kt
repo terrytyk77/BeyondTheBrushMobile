@@ -54,5 +54,11 @@ class DrawingRoomActivity: AppCompatActivity() {
                 myCanvasView.changeStrokeSize(slider.value)
             }
         })
+
+        // Reset Button Listener
+        reset.setOnClickListener {
+            myCanvasView.canvasReset()
+        }
+
     }
 }
