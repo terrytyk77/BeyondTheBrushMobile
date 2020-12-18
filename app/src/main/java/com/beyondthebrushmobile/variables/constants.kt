@@ -3,6 +3,9 @@
 //This variable holds the URL used in HTTP requests
 const val SERVER_URL = "http://10.0.2.2:3000"
 
+ //Armor save route
+ const val ARMOR_URL = "/save/armor"
+
 //Default Canvas Variables||
     const val defaultStrokeSize = 12f // has to be float
 //_____________||

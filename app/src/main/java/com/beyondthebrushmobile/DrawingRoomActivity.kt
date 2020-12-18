@@ -10,6 +10,7 @@ import codes.side.andcolorpicker.model.IntegerHSLColor
 import codes.side.andcolorpicker.view.picker.ColorSeekBar
 import com.beyondthebrushmobile.classes.DrawingCanvas
 import com.beyondthebrushmobile.services.http
+import com.beyondthebrushmobile.variables.ARMOR_URL
 import com.beyondthebrushmobile.variables.defaultStrokeSize
 import com.google.android.material.slider.Slider
 import kotlinx.android.synthetic.main.activity_drawing_room.*
@@ -67,7 +68,9 @@ class DrawingRoomActivity: AppCompatActivity() {
 
     fun SaveImage(view : View){
         drawingCanvas.createAnImage(this){
-            http.post(this, it, "/test"){
+            http.post(this, it, ARMOR_URL){
+
+                //Print the response from the server
                 println(it?.getString("result"))
             }
         }

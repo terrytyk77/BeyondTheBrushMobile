@@ -14,11 +14,11 @@ class ArmorAdapter (var itemList:ArrayList<ArmorProfile>,var context:Context) : 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        var gridItem = itemList[position]
+        val gridItem = itemList[position]
 
-        var inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        var itView = inflater.inflate(R.layout.armor_item,null)
+        val itView = inflater.inflate(R.layout.armor_item,null)
 
         itView.findViewById<ImageView>(R.id.armor_image).setImageResource(gridItem.armorImage)
         itView.findViewById<TextView>(R.id.armor_name).text = gridItem.armorName

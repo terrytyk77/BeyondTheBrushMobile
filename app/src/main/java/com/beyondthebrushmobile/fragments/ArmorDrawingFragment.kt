@@ -61,13 +61,17 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         armors.add(ArmorProfile(R.drawable.logo,"Sword"))
         armors.add(ArmorProfile(R.drawable.logo,"Shield"))
 
-        armorAdapter = ArmorAdapter(armors, activity!!)
+        armorAdapter = ArmorAdapter(armors, requireActivity())
 
         val armorGridView: GridView = view.findViewById(R.id.armor_grid_view)
         armorGridView.adapter = armorAdapter
 
         armorGridView.setOnItemClickListener { parent, view, position, id ->
             println("$parent $view $position $id")
+
+            //Store the type
+            val armorType = armors[position].armorName
+
             enterDrawingRoom(view)
         }
     }
