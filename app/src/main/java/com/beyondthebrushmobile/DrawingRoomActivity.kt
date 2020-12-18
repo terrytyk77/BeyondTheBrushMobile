@@ -59,13 +59,21 @@ class DrawingRoomActivity: AppCompatActivity() {
         })
 
         // Reset Button Listener
-        reset.setOnClickListener {
+        Undo.setOnClickListener {
+            myCanvasView.undo()
+        }
+
+        Redo.setOnClickListener {
+            myCanvasView.redo()
+        }
+
+        Reset.setOnClickListener {
             myCanvasView.canvasReset()
         }
 
     }
 
-    fun SaveImage(view : View){
+    fun saveImage(view : View){
         drawingCanvas.createAnImage(this){
             http.post(this, it, "/test"){
                 println(it?.getString("result"))
