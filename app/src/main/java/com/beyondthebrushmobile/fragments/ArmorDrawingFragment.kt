@@ -23,6 +23,9 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
         //Current profile IDq
         var currentProfileID : Int = 0;
+
+        //Armor grid view
+        lateinit var armorGridView: GridView
     //_________||
 
 
@@ -45,6 +48,8 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         for(i in 0 until currentUserFiles.userProfiles.length()){
             profileArray.add("Profile $i")
         }
+
+        profileArray.add("New Profile")
 
         //Update the dropdown
         updateDropdown(view, profileArray)
@@ -80,27 +85,58 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
             //Reset the current profile ID
             currentProfileID = itemIdAtPos.toInt()
 
-            //Update the profiles display
-            updateCurrentProfile(view, currentProfileID)
+            //Clicked the create new profile
+            if(itemIdAtPos.toInt() + 1 == profileArray.size){
+                makeNewProfile()
+            }else{
+                updateCurrentProfile(view, itemIdAtPos.toInt())
+            }
 
-            //println("$selectedItem, $itemIdAtPos")
         }
+
+    }
+
+    private fun makeNewProfile(){
 
     }
 
     private fun updateCurrentProfile(view : View, position : Int) {
 
-        // Filling The Armor Array
-        armors.add(ArmorProfile(R.drawable.logo,"Head"))
-        armors.add(ArmorProfile(R.drawable.logo,"Gloves"))
-        armors.add(ArmorProfile(R.drawable.logo,"Chest"))
-        armors.add(ArmorProfile(R.drawable.logo,"Boots"))
-        armors.add(ArmorProfile(R.drawable.logo,"Sword"))
-        armors.add(ArmorProfile(R.drawable.logo,"Shield"))
+        when(position){
+            0 ->{
+                armors.clear()
+
+                //Default 1
+                armors.add(ArmorProfile(R.drawable.hat1,"Head"))
+                armors.add(ArmorProfile(R.drawable.gloves1,"Gloves"))
+                armors.add(ArmorProfile(R.drawable.body_clothes1,"Chest"))
+                armors.add(ArmorProfile(R.drawable.boots1,"Boots"))
+                armors.add(ArmorProfile(R.drawable.sword1,"Sword"))
+                armors.add(ArmorProfile(R.drawable.shiled1,"Shield"))
+
+            }
+            1 ->{
+                armors.clear()
+
+                //Default 2
+                armors.add(ArmorProfile(R.drawable.hat2,"Head"))
+                armors.add(ArmorProfile(R.drawable.gloves2,"Gloves"))
+                armors.add(ArmorProfile(R.drawable.body_clothes2,"Chest"))
+                armors.add(ArmorProfile(R.drawable.boots2,"Boots"))
+                armors.add(ArmorProfile(R.drawable.sword2,"Sword"))
+                armors.add(ArmorProfile(R.drawable.shield2,"Shield"))
+            }
+        }
+
 
         armorAdapter = ArmorAdapter(armors, requireActivity())
 
-        val armorGridView: GridView = view.findViewById(R.id.armor_grid_view)
+        if(!this::armorGridView.isInitialized){
+            armorGridView = view.findViewById(R.id.armor_grid_view)
+        }
+
+
+
         armorGridView.adapter = armorAdapter
 
         armorGridView.setOnItemClickListener { parent, view, position, id ->
