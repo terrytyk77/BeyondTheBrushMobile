@@ -109,14 +109,15 @@ class LoginActivity : AppCompatActivity() {
             //Check the response
             if(it?.getBoolean("status") == true){
 
+                //Locally save the user data
+                currentUserFiles.userData = it.getJSONObject("body")
+                currentUserFiles.userProfiles = it.getJSONArray("profiles")
+
                 //Create the intent
                 val intent = Intent(this, MainActivity::class.java)
 
                 //Send him to the following activity
                 startActivity(intent)
-
-                //Locally save the user data
-                currentUserFiles.userData = it
 
             }else{
                 //Notify the user about the problem

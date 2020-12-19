@@ -11,13 +11,20 @@ import com.beyondthebrushmobile.ArmorAdapter
 import com.beyondthebrushmobile.DrawingRoomActivity
 import com.beyondthebrushmobile.R
 import com.beyondthebrushmobile.classes.ArmorProfile
-
+import com.beyondthebrushmobile.localStorage.currentUserFiles
 
 
 class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
-    private var armorAdapter:ArmorAdapter?=null
-    private val armors = arrayListOf<ArmorProfile>()
+    //Variables||
+
+        private var armorAdapter:ArmorAdapter?=null
+        private val armors = arrayListOf<ArmorProfile>()
+
+        //Current profile IDq
+        var currentProfileID : Int = 0;
+    //_________||
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View?
@@ -30,8 +37,26 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         super.onViewCreated(view, savedInstanceState)
         super.onCreate(savedInstanceState)
 
-        val profileArray = arrayOf("Item 1", "Item 2", "Item 3", "Item 4")
+        val profileArray: MutableList<String> = ArrayList()
+        profileArray.add("Profile 1")
+        profileArray.add("Profile 2")
 
+        //Add all the profiles the the drop down
+        for(i in 0 until currentUserFiles.userProfiles.length()){
+            profileArray.add("Profile $i")
+        }
+
+        //Update the dropdown
+        updateDropdown(view, profileArray)
+
+        //Update the profiles display
+        updateCurrentProfile(view, 0)
+
+    }
+
+    private fun updateDropdown(view: View, profileArray : MutableList<String>){
+
+        //The profiles adapter
         val profileAdapter = ArrayAdapter(
                 requireContext(),
                 R.layout.profile_drop_down_item,
@@ -39,19 +64,31 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
         //Getting the view
         val dropdown: AutoCompleteTextView = view.findViewById(R.id.dropdown_text)
+
         //Default Value
         dropdown.setText(profileArray[0])
+
         //Set Adapter
         dropdown.setAdapter(profileAdapter)
 
-        dropdown.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position: Int, id ->
+        //When you change a dropdown view
+        dropdown.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position: Int, _ ->
+
             val selectedItem = adapterView.getItemAtPosition(position) as String
             val itemIdAtPos = adapterView.getItemIdAtPosition(position)
 
-            println("$selectedItem, $itemIdAtPos")
+            //Reset the current profile ID
+            currentProfileID = itemIdAtPos.toInt()
+
+            //Update the profiles display
+            updateCurrentProfile(view, currentProfileID)
+
+            //println("$selectedItem, $itemIdAtPos")
         }
 
+    }
 
+    private fun updateCurrentProfile(view : View, position : Int) {
 
         // Filling The Armor Array
         armors.add(ArmorProfile(R.drawable.logo,"Head"))
@@ -74,6 +111,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
             enterDrawingRoom(view)
         }
+
     }
 
    private fun enterDrawingRoom(view: View){
