@@ -9,9 +9,13 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import com.beyondthebrushmobile.ArmorAdapter
 import com.beyondthebrushmobile.DrawingRoomActivity
+import com.beyondthebrushmobile.MainActivity
 import com.beyondthebrushmobile.R
 import com.beyondthebrushmobile.classes.ArmorProfile
 import com.beyondthebrushmobile.localStorage.currentUserFiles
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_armor_drawing.*
 
 
 class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
@@ -37,6 +41,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         super.onCreate(savedInstanceState)
 
@@ -46,9 +51,10 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
         //Add all the profiles the the drop down
         for(i in 0 until currentUserFiles.userProfiles.length()){
-            profileArray.add("Profile $i")
+            profileArray.add("Profile ${3+i}")
         }
 
+        //Add the create a new profile button
         profileArray.add("New Profile")
 
         //Update the dropdown
@@ -59,7 +65,9 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
     }
 
-    private fun updateDropdown(view: View, profileArray : MutableList<String>){
+    fun updateDropdown(view: View, theList : MutableList<String>){
+
+        var profileArray = theList
 
         //The profiles adapter
         val profileAdapter = ArrayAdapter(
@@ -71,7 +79,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         val dropdown: AutoCompleteTextView = view.findViewById(R.id.dropdown_text)
 
         //Default Value
-        dropdown.setText(profileArray[0])
+        dropdown.setText(profileArray[currentProfileID])
 
         //Set Adapter
         dropdown.setAdapter(profileAdapter)
@@ -87,16 +95,39 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
             //Clicked the create new profile
             if(itemIdAtPos.toInt() + 1 == profileArray.size){
-                makeNewProfile()
+
+                (activity as MainActivity).makeNewProfile(view, profileArray, currentProfileID){
+
+                    //Remake the options list
+                    val profileArray2: MutableList<String> = ArrayList()
+                    profileArray2.add("Profile 1")
+                    profileArray2.add("Profile 2")
+
+                    //Add all the profiles the the drop down
+                    for(i in 0 until currentUserFiles.userProfiles.length()){
+                        profileArray2.add("Profile ${3+i}")
+                    }
+
+                    //Add the create a new profile button
+                    profileArray2.add("New Profile")
+
+                    profileArray = profileArray2
+
+                    //Remake the adapter here
+                    val profileAdapter2 = ArrayAdapter(
+                            requireContext(),
+                            R.layout.profile_drop_down_item,
+                            profileArray2)
+
+                    dropdown.setAdapter(profileAdapter2) //Update with the new adapter
+
+                }
+
             }else{
                 updateCurrentProfile(view, itemIdAtPos.toInt())
             }
 
         }
-
-    }
-
-    private fun makeNewProfile(){
 
     }
 
@@ -125,6 +156,30 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                 armors.add(ArmorProfile(R.drawable.boots2,"Boots"))
                 armors.add(ArmorProfile(R.drawable.sword2,"Sword"))
                 armors.add(ArmorProfile(R.drawable.shield2,"Shield"))
+            }
+            else->{
+
+                armors.clear()
+
+                val currentItem = currentUserFiles.userProfiles.getJSONObject(position - 2)
+                val currentDefault = currentItem.getJSONObject("preset").getInt("name")
+
+                if(currentDefault == 0){
+                    armors.add(ArmorProfile(R.drawable.hat1,"Head"))
+                    armors.add(ArmorProfile(R.drawable.gloves1,"Gloves"))
+                    armors.add(ArmorProfile(R.drawable.body_clothes1,"Chest"))
+                    armors.add(ArmorProfile(R.drawable.boots1,"Boots"))
+                    armors.add(ArmorProfile(R.drawable.sword1,"Sword"))
+                    armors.add(ArmorProfile(R.drawable.shiled1,"Shield"))
+                }else if(currentDefault == 1) {
+                    armors.add(ArmorProfile(R.drawable.hat2,"Head"))
+                    armors.add(ArmorProfile(R.drawable.gloves2,"Gloves"))
+                    armors.add(ArmorProfile(R.drawable.body_clothes2,"Chest"))
+                    armors.add(ArmorProfile(R.drawable.boots2,"Boots"))
+                    armors.add(ArmorProfile(R.drawable.sword2,"Sword"))
+                    armors.add(ArmorProfile(R.drawable.shield2,"Shield"))
+                }
+
             }
         }
 
