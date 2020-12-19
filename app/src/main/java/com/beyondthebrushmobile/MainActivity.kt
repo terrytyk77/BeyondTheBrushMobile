@@ -73,7 +73,10 @@ class MainActivity : AppCompatActivity() {
 
                                     //The profiles was created!
                                     toBeRun(which)
-                                    println(it?.getString("result"))
+                                    MaterialAlertDialogBuilder(this)
+                                            .setTitle(it?.getString("result"))
+                                            .setItems(arrayOf("ok")){_,_->}
+                                            .show()
                                 }else{
                                     MaterialAlertDialogBuilder(this)
                                             .setTitle(it?.getString("result"))
