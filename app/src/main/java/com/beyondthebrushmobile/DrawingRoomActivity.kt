@@ -399,9 +399,9 @@ class DrawingRoomActivity: AppCompatActivity() {
             }
             "Gloves"->{
                 if(presetID == 0){
-                    itemPortrait.setImageResource(R.drawable.gloves1)
+                    itemPortrait.setImageResource(R.drawable.gloves1_f)
                 }else if(presetID == 1){
-                    itemPortrait.setImageResource(R.drawable.gloves2)
+                    itemPortrait.setImageResource(R.drawable.gloves2_f)
                 }
 
                 val glovesImage = getItem(profile, "front", "Gloves")
