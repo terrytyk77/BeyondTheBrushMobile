@@ -13,6 +13,8 @@ import com.beyondthebrushmobile.MainActivity
 import com.beyondthebrushmobile.R
 import com.beyondthebrushmobile.classes.ArmorProfile
 import com.beyondthebrushmobile.localStorage.currentUserFiles
+import com.beyondthebrushmobile.variables.Armor_ID
+import com.beyondthebrushmobile.variables.Profile_ID
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_armor_drawing.*
@@ -46,8 +48,8 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         super.onCreate(savedInstanceState)
 
         val profileArray: MutableList<String> = ArrayList()
-        profileArray.add("Profile 1")
-        profileArray.add("Profile 2")
+        profileArray.add("Profile 1 \uD83D\uDD12")
+        profileArray.add("Profile 2 \uD83D\uDD12")
 
         //Add all the profiles the the drop down
         for(i in 0 until currentUserFiles.userProfiles.length()){
@@ -200,16 +202,30 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         armorGridView.setOnItemClickListener { parent, view, position, id ->
             println("$parent $view $position $id")
 
-            //Store the type
-            val armorType = armors[position].armorName
+            if(currentProfileID == 0 || currentProfileID == 1){
+                (activity as MainActivity).notification("Cannot edit default profiles!")
+            }else{
+                //Store the type
+                val armorType : String = armors[position].armorName
+                enterDrawingRoom(view, armorType)
+            }
 
-            enterDrawingRoom(view)
+
+
+
+
         }
 
     }
 
-   private fun enterDrawingRoom(view: View){
-        val intent = Intent(activity, DrawingRoomActivity::class.java)
+   private fun enterDrawingRoom(view: View, armorID : String){
+
+        val intent = Intent(activity, DrawingRoomActivity::class.java).apply {
+            putExtra(Armor_ID, armorID)
+            putExtra(Profile_ID, currentProfileID)
+        }
+       //Insert this room data to the other activity
+
         startActivity(intent)
    }
 }

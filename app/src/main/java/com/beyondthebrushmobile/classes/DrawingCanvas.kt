@@ -205,6 +205,8 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
         fun createAnImage(view: Context, toBeRun: (m: JSONObject) -> Unit){
 
+            println("Created the image")
+
             //Conversion||
                 var baos = ByteArrayOutputStream()
                 extraBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)

@@ -26,5 +26,10 @@ const val SERVER_URL = "http://10.0.2.2:3000"
     const val UsernameTooBig = "The username is too big"
     //_____________||
 
+    //Intent variables||
+    const val Armor_ID = "armorID"
+    const val Profile_ID = "profileID"
+    //________________||
+
 //______________||
 

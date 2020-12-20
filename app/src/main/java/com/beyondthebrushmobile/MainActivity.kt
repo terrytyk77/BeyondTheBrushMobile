@@ -47,6 +47,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun notification(message : String){
+        MaterialAlertDialogBuilder(this)
+                .setTitle(message)
+                .setItems(arrayOf("ok")){_,_->}
+                .show()
+    }
+
     fun makeNewProfile(view: View, profileArray : MutableList<String>, currentProfileID: Int, toBeRun: (m : Int) -> Unit){
         println("Make a new profile")
 

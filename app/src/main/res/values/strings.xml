@@ -15,5 +15,10 @@
     <string name="sign_up">Sign up!</string>
     <string name="repeat_password">repeat password…</string>
     <string name="email">email…</string>
+    <string name="image_of_the_current_item">Image of the current item</string>
+    <string name="undo">Undo</string>
+    <string name="send">Send</string>
+    <string name="redo">Redo</string>
+    <string name="reset">Reset</string>
 
 </resources>
