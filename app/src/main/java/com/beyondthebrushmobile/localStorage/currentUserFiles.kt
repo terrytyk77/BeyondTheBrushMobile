@@ -16,5 +16,7 @@ object currentUserFiles{
     //2 -> Left
     //3 -> Back
     var currentDirection : Int = 0
+    var itemID : String? = ""
+    var currentProfileID : Int = 0
 
 }

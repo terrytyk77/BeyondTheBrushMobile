@@ -79,8 +79,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        println("Drawing uwu")
-
         //Choose correct bitmap
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
 

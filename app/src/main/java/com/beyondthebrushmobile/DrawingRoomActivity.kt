@@ -79,6 +79,77 @@ class DrawingRoomActivity: AppCompatActivity() {
             myCanvasView.canvasReset()
         }
 
+
+        fun updateImage(currentDirection : Int){
+
+            val presetID : Int = currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("preset").getInt("name")
+
+            //Check the current item
+            when(currentUserFiles.itemID){
+                "Head"->{
+                    when(currentDirection){
+                        0->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.hat1)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.hat2)
+                                }
+                            }
+
+                        }
+                        1->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.hat1_r)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.hat2_r)
+                                }
+                            }
+                        }
+                        2->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.hat1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.hat2_b)
+                                }
+                            }
+                        }
+                        3->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.hat1_l)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.hat2_l)
+                                }
+                            }
+                        }
+                    }
+                }
+                "Gloves"->{
+
+                }
+                "Chest"->{
+
+                }
+                "Boots"->{
+
+                }
+                "Sword"->{
+
+                }
+                "Shield"->{
+
+                }
+
+            }
+        }
+
         //Set the turning buttons of the item
         //These buttons are used to change the direction of the items that are being displayed
         //pressing right will add 1 to the value
@@ -92,6 +163,8 @@ class DrawingRoomActivity: AppCompatActivity() {
             }else{
                 currentUserFiles.currentDirection++
             }
+
+            updateImage(currentUserFiles.currentDirection)
 
             drawingCanvas.reDrawCanvas(lastPosition)
 
@@ -107,6 +180,8 @@ class DrawingRoomActivity: AppCompatActivity() {
                 currentUserFiles.currentDirection--
             }
 
+            updateImage(currentUserFiles.currentDirection)
+
             drawingCanvas.reDrawCanvas(lastPosition)
 
         }
@@ -118,6 +193,10 @@ class DrawingRoomActivity: AppCompatActivity() {
         //Get the intent values
         val itemID = intent.getStringExtra(Armor_ID)
         var currentProfile = intent.getIntExtra(Profile_ID, 0)
+
+        //Save the profile and items IDs
+        currentUserFiles.currentProfileID = currentProfile - 2
+        currentUserFiles.itemID = itemID
 
         //Get the profile element
         val profile : JSONObject = currentUserFiles.userProfiles.get(currentProfile - 2) as JSONObject
