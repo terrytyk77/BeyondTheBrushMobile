@@ -148,7 +148,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                 armors.add(ArmorProfile(R.drawable.body_clothes1,"Chest"))
                 armors.add(ArmorProfile(R.drawable.boots1,"Boots"))
                 armors.add(ArmorProfile(R.drawable.sword1,"Sword"))
-                armors.add(ArmorProfile(R.drawable.shiled1,"Shield"))
+                armors.add(ArmorProfile(R.drawable.shield1,"Shield"))
 
             }
             1 ->{
@@ -175,7 +175,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                     armors.add(ArmorProfile(R.drawable.body_clothes1,"Chest"))
                     armors.add(ArmorProfile(R.drawable.boots1,"Boots"))
                     armors.add(ArmorProfile(R.drawable.sword1,"Sword"))
-                    armors.add(ArmorProfile(R.drawable.shiled1,"Shield"))
+                    armors.add(ArmorProfile(R.drawable.shield1,"Shield"))
                 }else if(currentDefault == 1) {
                     armors.add(ArmorProfile(R.drawable.hat2,"Head"))
                     armors.add(ArmorProfile(R.drawable.gloves2,"Gloves"))

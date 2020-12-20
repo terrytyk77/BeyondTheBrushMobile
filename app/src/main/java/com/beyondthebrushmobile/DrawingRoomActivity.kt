@@ -135,16 +135,149 @@ class DrawingRoomActivity: AppCompatActivity() {
 
                 }
                 "Chest"->{
+                    when(currentDirection){
+                        0->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes1)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes2)
+                                }
+                            }
 
+                        }
+                        1->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes1_r)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes2_r)
+                                }
+                            }
+                        }
+                        2->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes2_b)
+                                }
+                            }
+                        }
+                        3->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes1_l)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.body_clothes2_b)
+                                }
+                            }
+                        }
+                    }
                 }
                 "Boots"->{
+                    when(currentDirection){
+                        0->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shoes1)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shoes2)
+                                }
+                            }
 
+                        }
+                        1->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shoes1_r)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shoes2_r)
+                                }
+                            }
+                        }
+                        2->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shoes1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shoes2_b)
+                                }
+                            }
+                        }
+                        3->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shoes1_l)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shoes2_l)
+                                }
+                            }
+                        }
+                    }
                 }
                 "Sword"->{
-
+                    when(presetID){
+                        0->{
+                            itemPortrait.setImageResource(R.drawable.sword1)
+                        }
+                        1->{
+                            itemPortrait.setImageResource(R.drawable.sword2)
+                        }
+                    }
                 }
                 "Shield"->{
+                    when(currentDirection){
+                        0->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shield1)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shield2)
+                                }
+                            }
 
+                        }
+                        1->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shield1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shield2_b)
+                                }
+                            }
+                        }
+                        2->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shield1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shield2_b)
+                                }
+                            }
+                        }
+                        3->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.shield1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.shield2_b)
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
@@ -250,9 +383,9 @@ class DrawingRoomActivity: AppCompatActivity() {
             }
             "Boots"->{
                 if(presetID == 0){
-                    itemPortrait.setImageResource(R.drawable.boots1)
+                    itemPortrait.setImageResource(R.drawable.shoes1)
                 }else if(presetID == 1){
-                    itemPortrait.setImageResource(R.drawable.boots2)
+                    itemPortrait.setImageResource(R.drawable.shoes2)
                 }
 
                 val bootsImage = getItem(profile, "front", "Boots")
@@ -276,7 +409,7 @@ class DrawingRoomActivity: AppCompatActivity() {
             }
             "Shield"->{
                 if(presetID == 0){
-                    itemPortrait.setImageResource(R.drawable.shiled1)
+                    itemPortrait.setImageResource(R.drawable.shield1)
                 }else if(presetID == 1){
                     itemPortrait.setImageResource(R.drawable.shield2)
                 }
