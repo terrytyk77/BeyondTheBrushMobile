@@ -24,14 +24,6 @@ import kotlin.reflect.typeOf
 
 class DrawingRoomActivity: AppCompatActivity() {
 
-    //Armor directions
-    //0 -> Front
-    //1 -> Right
-    //2 -> Left
-    //3 -> Back
-    var currentDirection : Int = 0
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing_room)
@@ -85,6 +77,38 @@ class DrawingRoomActivity: AppCompatActivity() {
 
         Reset.setOnClickListener {
             myCanvasView.canvasReset()
+        }
+
+        //Set the turning buttons of the item
+        //These buttons are used to change the direction of the items that are being displayed
+        //pressing right will add 1 to the value
+        //while pressing left will reduce 1 of the value
+        moveToTheRight.setOnClickListener{
+
+            val lastPosition = currentUserFiles.currentDirection
+
+            if(currentUserFiles.currentDirection >= 3){
+                currentUserFiles.currentDirection = 0
+            }else{
+                currentUserFiles.currentDirection++
+            }
+
+            drawingCanvas.reDrawCanvas(lastPosition)
+
+        }
+
+        moveToTheLeft.setOnClickListener{
+
+            val lastPosition = currentUserFiles.currentDirection
+
+            if(currentUserFiles.currentDirection <= 0){
+                currentUserFiles.currentDirection = 3
+            }else{
+                currentUserFiles.currentDirection--
+            }
+
+            drawingCanvas.reDrawCanvas(lastPosition)
+
         }
 
     }

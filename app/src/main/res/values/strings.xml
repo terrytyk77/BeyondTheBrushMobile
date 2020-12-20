@@ -20,5 +20,7 @@
     <string name="send">Send</string>
     <string name="redo">Redo</string>
     <string name="reset">Reset</string>
+    <string name="right">right</string>
+    <string name="left">Left</string>
 
 </resources>

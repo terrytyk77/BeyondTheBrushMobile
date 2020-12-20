@@ -10,4 +10,11 @@ object currentUserFiles{
     var userData : JSONObject? = JSONObject()
     var userProfiles : JSONArray = JSONArray()
 
+    //Armor directions
+    //0 -> Front
+    //1 -> Right
+    //2 -> Left
+    //3 -> Back
+    var currentDirection : Int = 0
+
 }
