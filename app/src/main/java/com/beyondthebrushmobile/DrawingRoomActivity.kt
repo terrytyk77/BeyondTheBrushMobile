@@ -132,7 +132,49 @@ class DrawingRoomActivity: AppCompatActivity() {
                     }
                 }
                 "Gloves"->{
+                    when(currentDirection){
+                        0->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.gloves1_f)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.gloves2_f)
+                                }
+                            }
 
+                        }
+                        1->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.gloves1_f)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.gloves2_f)
+                                }
+                            }
+                        }
+                        2->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.gloves1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.gloves2_b)
+                                }
+                            }
+                        }
+                        3->{
+                            when(presetID){
+                                0->{
+                                    itemPortrait.setImageResource(R.drawable.gloves1_b)
+                                }
+                                1->{
+                                    itemPortrait.setImageResource(R.drawable.gloves2_b)
+                                }
+                            }
+                        }
+                    }
                 }
                 "Chest"->{
                     when(currentDirection){
@@ -173,7 +215,7 @@ class DrawingRoomActivity: AppCompatActivity() {
                                     itemPortrait.setImageResource(R.drawable.body_clothes1_l)
                                 }
                                 1->{
-                                    itemPortrait.setImageResource(R.drawable.body_clothes2_b)
+                                    itemPortrait.setImageResource(R.drawable.body_clothes2_l)
                                 }
                             }
                         }
