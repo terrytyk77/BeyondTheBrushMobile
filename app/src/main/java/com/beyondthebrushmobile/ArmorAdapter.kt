@@ -31,7 +31,7 @@ class ArmorAdapter (var itemList:ArrayList<ArmorProfile>,var context:Context) : 
         //Look for the image on the profiles
         var base64String : String = currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("front").getString(gridItem.armorName)
         //Check if there is paint to put on the armor
-        if(base64String.isNotEmpty()){
+        if(base64String.isNotEmpty() && currentUserFiles.dropDownID > 1){
 
             //Decode the image
             val decodedBase = Base64.decode(base64String, Base64.DEFAULT)
@@ -39,6 +39,8 @@ class ArmorAdapter (var itemList:ArrayList<ArmorProfile>,var context:Context) : 
 
             //Set the image to the UI element
             itView.findViewById<ImageView>(R.id.armor_paint).setImageBitmap(decodedBaseByte)
+        }else{
+            itView.findViewById<ImageView>(R.id.armor_paint).setImageResource(0)
         }
 
         return itView

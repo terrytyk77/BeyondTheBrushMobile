@@ -98,6 +98,15 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
             val selectedItem = adapterView.getItemAtPosition(position) as String
             val itemIdAtPos = adapterView.getItemIdAtPosition(position)
 
+            //Changed the drop down variable
+            currentUserFiles.dropDownID = position
+
+            //Changed the profile
+            if(position >= 2){
+                currentUserFiles.currentProfileID = position - 2
+            }
+
+
             //Reset the current profile ID
             currentProfileID = itemIdAtPos.toInt()
 

@@ -18,5 +18,6 @@ object currentUserFiles{
     var currentDirection : Int = 0
     var itemID : String? = ""
     var currentProfileID : Int = 0
+    var dropDownID : Int = 0
 
 }
