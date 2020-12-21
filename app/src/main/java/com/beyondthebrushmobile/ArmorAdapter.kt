@@ -29,7 +29,11 @@ class ArmorAdapter (var itemList:ArrayList<ArmorProfile>,var context:Context) : 
         itView.findViewById<TextView>(R.id.armor_name).text = gridItem.armorName
 
         //Look for the image on the profiles
-        var base64String : String = currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("front").getString(gridItem.armorName)
+        var base64String : String = ""
+        if(currentUserFiles.dropDownID > 1){
+            base64String = currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("front").getString(gridItem.armorName)
+        }
+
         //Check if there is paint to put on the armor
         if(base64String.isNotEmpty() && currentUserFiles.dropDownID > 1){
 
