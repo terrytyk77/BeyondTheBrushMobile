@@ -416,11 +416,11 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("front").put(currentUserFiles.itemID, encodedImage1)
 
             //right
-            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("right").put(currentUserFiles.itemID, encodedImage1)
+            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("right").put(currentUserFiles.itemID, encodedImage2)
             //back
-            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("back").put(currentUserFiles.itemID, encodedImage1)
+            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("back").put(currentUserFiles.itemID, encodedImage3)
             //left
-            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("left").put(currentUserFiles.itemID, encodedImage1)
+            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("left").put(currentUserFiles.itemID, encodedImage4)
 
             //Call the function
             toBeRun(postData)
