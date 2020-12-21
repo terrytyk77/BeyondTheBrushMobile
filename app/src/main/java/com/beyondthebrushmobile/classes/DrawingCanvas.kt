@@ -7,18 +7,14 @@ import android.util.Base64
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
-import android.widget.Toast
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
 import codes.side.andcolorpicker.converter.setFromColorInt
 import codes.side.andcolorpicker.converter.toColorInt
 import codes.side.andcolorpicker.model.IntegerHSLColor
-import com.beyondthebrushmobile.DrawingRoomActivity
-import com.beyondthebrushmobile.MainActivity
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.variables.defaultStrokeSize
-import kotlinx.android.synthetic.main.activity_drawing_room.view.*
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import kotlin.math.abs
@@ -37,6 +33,11 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         //2 -> right
         //3 -> back
         //4 -> left
+
+    private lateinit var holderExtraBitmap1: Bitmap
+    private lateinit var holderExtraBitmap2: Bitmap
+    private lateinit var holderExtraBitmap3: Bitmap
+    private lateinit var holderExtraBitmap4: Bitmap
 
     private lateinit var extraBitmap: Bitmap
     private lateinit var extraBitmap1: Bitmap
@@ -141,6 +142,9 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             }
         }
 
+        println("What we got")
+        println(extraBitmap)
+
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
         this.invalidate()
@@ -170,10 +174,26 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         if (::extraBitmap4.isInitialized) extraBitmap4.recycle()
         extraBitmap4 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
 
+        //Setup the variables here
+        if(::holderExtraBitmap1.isInitialized){
+
+            extraBitmap = holderExtraBitmap1
+
+            //front
+            extraBitmap1 = holderExtraBitmap1
+
+            //right
+            extraBitmap2 = holderExtraBitmap2
+
+            //back
+            extraBitmap3 = holderExtraBitmap3
+
+            //left
+            extraBitmap4 = holderExtraBitmap4
+        }
+
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
-
-
 
         // Calculate a rectangular frame around the picture.
         val inset = 30
@@ -313,6 +333,36 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             canvasClear()
             pathArray.clear()
             pathArrayUndone.clear()
+        }
+
+        fun setupDrawing(front: String, right: String, back: String, left: String){
+
+
+            //Set the bitmaps to the correct drawings
+            //front
+            val decodedFront = Base64.decode(front, Base64.DEFAULT)
+            val decodedFrontByte = BitmapFactory.decodeByteArray(decodedFront, 0, decodedFront.size)
+
+            //Just do the extra steps now I guess
+            holderExtraBitmap1 = decodedFrontByte.copy(Bitmap.Config.ARGB_8888, true)
+
+            //right
+            val decodedFront2 = Base64.decode(right, Base64.DEFAULT)
+            val decodedFrontByte2 = BitmapFactory.decodeByteArray(decodedFront2, 0, decodedFront2.size)
+
+            holderExtraBitmap2 = decodedFrontByte2.copy(Bitmap.Config.ARGB_8888, true)
+            //back
+            val decodedFront3 = Base64.decode(back, Base64.DEFAULT)
+            val decodedFrontByte3 = BitmapFactory.decodeByteArray(decodedFront3, 0, decodedFront3.size)
+
+            holderExtraBitmap3 = decodedFrontByte3.copy(Bitmap.Config.ARGB_8888, true)
+            //left
+            val decodedFront4 = Base64.decode(left, Base64.DEFAULT)
+            val decodedFrontByte4 = BitmapFactory.decodeByteArray(decodedFront4, 0, decodedFront4.size)
+
+            holderExtraBitmap4 = decodedFrontByte4.copy(Bitmap.Config.ARGB_8888, true)
+            //update the canvas
+            this.invalidate()
         }
 
         fun createAnImage(view: Context, toBeRun: (m: JSONObject) -> Unit){

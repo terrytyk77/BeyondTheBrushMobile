@@ -423,9 +423,14 @@ class DrawingRoomActivity: AppCompatActivity() {
                 }
 
                 val helmetImage = getItem(profile, "front", "head")
+                val helmetImage2 = getItem(profile, "right", "head")
+                val helmetImage3 = getItem(profile, "back", "head")
+                val helmetImage4 = getItem(profile, "left", "head")
 
-                if(helmetImage.length > 10){
+
+                if(helmetImage.length > 10 && helmetImage2.length > 10 && helmetImage3.length > 10 && helmetImage4.length > 10){
                     //Then there is data to be loaded
+                    drawingCanvas.setupDrawing(helmetImage, helmetImage2, helmetImage3, helmetImage4)
                 }
 
             }
@@ -436,10 +441,14 @@ class DrawingRoomActivity: AppCompatActivity() {
                     itemPortrait.setImageResource(R.drawable.gloves2_f)
                 }
 
-                val glovesImage = getItem(profile, "front", "Gloves")
+                val glovesImage1 = getItem(profile, "front", "Gloves")
+                val glovesImage2 = getItem(profile, "right", "Gloves")
+                val glovesImage3 = getItem(profile, "back", "Gloves")
+                val glovesImage4 = getItem(profile, "left", "Gloves")
 
-                if(glovesImage.length > 10){
+                if(glovesImage1.length > 10){
                     //Then there is data to be loaded
+                    drawingCanvas.setupDrawing(glovesImage1, glovesImage2, glovesImage3, glovesImage4)
                 }
             }
             "Chest"->{
@@ -449,10 +458,15 @@ class DrawingRoomActivity: AppCompatActivity() {
                     itemPortrait.setImageResource(R.drawable.body_clothes2)
                 }
 
-                val chestImage = getItem(profile, "front", "Chest")
+                val chestImage1 = getItem(profile, "front", "Chest")
+                val chestImage2 = getItem(profile, "right", "Chest")
+                val chestImage3 = getItem(profile, "back", "Chest")
+                val chestImage4 = getItem(profile, "left", "Chest")
 
-                if(chestImage.length > 10){
+
+                if(chestImage1.length > 10){
                     //Then there is data to be loaded
+                    drawingCanvas.setupDrawing(chestImage1, chestImage2, chestImage3, chestImage4)
                 }
             }
             "Boots"->{
@@ -462,10 +476,15 @@ class DrawingRoomActivity: AppCompatActivity() {
                     itemPortrait.setImageResource(R.drawable.shoes2)
                 }
 
-                val bootsImage = getItem(profile, "front", "Boots")
+                val bootsImage1 = getItem(profile, "front", "Boots")
+                val bootsImage2 = getItem(profile, "right", "Boots")
+                val bootsImage3 = getItem(profile, "back", "Boots")
+                val bootsImage4 = getItem(profile, "left", "Boots")
 
-                if(bootsImage.length > 10){
+
+                if(bootsImage1.length > 10){
                     //Then there is data to be loaded
+                    drawingCanvas.setupDrawing(bootsImage1, bootsImage2, bootsImage3, bootsImage4)
                 }
             }
             "Sword"-> {
@@ -475,10 +494,14 @@ class DrawingRoomActivity: AppCompatActivity() {
                     itemPortrait.setImageResource(R.drawable.sword2)
                 }
 
-                val swordImage = getItem(profile, "front", "Sword")
+                val swordImage1 = getItem(profile, "front", "Sword")
+                val swordImage2 = getItem(profile, "right", "Sword")
+                val swordImage3 = getItem(profile, "back", "Sword")
+                val swordImage4 = getItem(profile, "left", "Sword")
 
-                if(swordImage.length > 10){
+                if(swordImage1.length > 10){
                     //Then there is data to be loaded
+                    drawingCanvas.setupDrawing(swordImage1, swordImage2, swordImage3, swordImage4)
                 }
             }
             "Shield"->{
@@ -488,10 +511,14 @@ class DrawingRoomActivity: AppCompatActivity() {
                     itemPortrait.setImageResource(R.drawable.shield2)
                 }
 
-                val shieldImage = getItem(profile, "front", "Shield")
+                val shieldImage1 = getItem(profile, "front", "Shield")
+                val shieldImage2 = getItem(profile, "right", "Shield")
+                val shieldImage3 = getItem(profile, "back", "Shield")
+                val shieldImage4 = getItem(profile, "left", "Shield")
 
-                if(shieldImage.length > 10){
+                if(shieldImage1.length > 10){
                     //Then there is data to be loaded
+                    drawingCanvas.setupDrawing(shieldImage1, shieldImage2, shieldImage3, shieldImage4)
                 }
             }
         }
