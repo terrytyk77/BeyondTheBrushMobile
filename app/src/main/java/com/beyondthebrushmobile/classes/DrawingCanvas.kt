@@ -409,6 +409,19 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                     .put("profileID", currentUserFiles.currentProfileID)
                     .put("userID", currentUserFiles.userData?.getString("_id"))
 
+            println(currentUserFiles.itemID)
+
+            //Save locally as well
+            //front
+            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("front").put(currentUserFiles.itemID, encodedImage1)
+
+            //right
+            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("right").put(currentUserFiles.itemID, encodedImage1)
+            //back
+            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("back").put(currentUserFiles.itemID, encodedImage1)
+            //left
+            currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("left").put(currentUserFiles.itemID, encodedImage1)
+
             //Call the function
             toBeRun(postData)
         }

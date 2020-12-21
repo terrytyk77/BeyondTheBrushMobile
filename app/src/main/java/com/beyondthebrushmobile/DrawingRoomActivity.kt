@@ -422,10 +422,10 @@ class DrawingRoomActivity: AppCompatActivity() {
                     itemPortrait.setImageResource(R.drawable.hat2)
                 }
 
-                val helmetImage = getItem(profile, "front", "head")
-                val helmetImage2 = getItem(profile, "right", "head")
-                val helmetImage3 = getItem(profile, "back", "head")
-                val helmetImage4 = getItem(profile, "left", "head")
+                val helmetImage = getItem(profile, "front", "Head")
+                val helmetImage2 = getItem(profile, "right", "Head")
+                val helmetImage3 = getItem(profile, "back", "Head")
+                val helmetImage4 = getItem(profile, "left", "Head")
 
 
                 if(helmetImage.length > 10 && helmetImage2.length > 10 && helmetImage3.length > 10 && helmetImage4.length > 10){
@@ -446,7 +446,7 @@ class DrawingRoomActivity: AppCompatActivity() {
                 val glovesImage3 = getItem(profile, "back", "Gloves")
                 val glovesImage4 = getItem(profile, "left", "Gloves")
 
-                if(glovesImage1.length > 10){
+                if(glovesImage1.length > 10 && glovesImage2.length > 10 && glovesImage3.length > 10 && glovesImage4.length > 10){
                     //Then there is data to be loaded
                     drawingCanvas.setupDrawing(glovesImage1, glovesImage2, glovesImage3, glovesImage4)
                 }
@@ -464,7 +464,7 @@ class DrawingRoomActivity: AppCompatActivity() {
                 val chestImage4 = getItem(profile, "left", "Chest")
 
 
-                if(chestImage1.length > 10){
+                if(chestImage1.length > 10 && chestImage2.length > 10 && chestImage3.length > 10 && chestImage4.length > 10){
                     //Then there is data to be loaded
                     drawingCanvas.setupDrawing(chestImage1, chestImage2, chestImage3, chestImage4)
                 }
@@ -482,7 +482,7 @@ class DrawingRoomActivity: AppCompatActivity() {
                 val bootsImage4 = getItem(profile, "left", "Boots")
 
 
-                if(bootsImage1.length > 10){
+                if(bootsImage1.length > 10 && bootsImage2.length > 10 && bootsImage3.length > 10 && bootsImage4.length > 10){
                     //Then there is data to be loaded
                     drawingCanvas.setupDrawing(bootsImage1, bootsImage2, bootsImage3, bootsImage4)
                 }
@@ -516,16 +516,12 @@ class DrawingRoomActivity: AppCompatActivity() {
                 val shieldImage3 = getItem(profile, "back", "Shield")
                 val shieldImage4 = getItem(profile, "left", "Shield")
 
-                if(shieldImage1.length > 10){
+                if(shieldImage1.length > 10 && shieldImage2.length > 10 && shieldImage3.length > 10 && shieldImage4.length > 10){
                     //Then there is data to be loaded
                     drawingCanvas.setupDrawing(shieldImage1, shieldImage2, shieldImage3, shieldImage4)
                 }
             }
         }
-
-        //Display the drawing if there is already one
-        println(profile.getJSONObject("front").getString("head").length)
-
     }
 
     private fun getItem(profile: JSONObject, side: String, piece: String) : String{
