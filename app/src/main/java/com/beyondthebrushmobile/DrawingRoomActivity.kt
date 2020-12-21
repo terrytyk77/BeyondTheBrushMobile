@@ -19,7 +19,6 @@ import com.beyondthebrushmobile.variables.defaultStrokeSize
 import com.google.android.material.slider.Slider
 import kotlinx.android.synthetic.main.activity_drawing_room.*
 import org.json.JSONObject
-import kotlin.reflect.typeOf
 
 
 class DrawingRoomActivity: AppCompatActivity() {
@@ -339,6 +338,21 @@ class DrawingRoomActivity: AppCompatActivity() {
                 currentUserFiles.currentDirection++
             }
 
+            when(currentUserFiles.currentDirection){
+                0->{
+                    currentSideText.text = "Front"
+                }
+                1->{
+                    currentSideText.text = "Right"
+                }
+                2->{
+                    currentSideText.text = "Back"
+                }
+                3->{
+                    currentSideText.text = "Left"
+                }
+            }
+
             updateImage(currentUserFiles.currentDirection)
 
             drawingCanvas.reDrawCanvas(lastPosition)
@@ -355,6 +369,21 @@ class DrawingRoomActivity: AppCompatActivity() {
                 currentUserFiles.currentDirection--
             }
 
+            when(currentUserFiles.currentDirection){
+                0->{
+                    currentSideText.text = "Front"
+                }
+                1->{
+                    currentSideText.text = "Right"
+                }
+                2->{
+                    currentSideText.text = "Back"
+                }
+                3->{
+                    currentSideText.text = "Left"
+                }
+            }
+
             updateImage(currentUserFiles.currentDirection)
 
             drawingCanvas.reDrawCanvas(lastPosition)
@@ -368,6 +397,9 @@ class DrawingRoomActivity: AppCompatActivity() {
         //Get the intent values
         val itemID = intent.getStringExtra(Armor_ID)
         var currentProfile = intent.getIntExtra(Profile_ID, 0)
+
+        currentUserFiles.currentDirection = 0
+        currentSideText.text = "Front"
 
         //Save the profile and items IDs
         currentUserFiles.currentProfileID = currentProfile - 2
@@ -473,10 +505,21 @@ class DrawingRoomActivity: AppCompatActivity() {
         return profile.getJSONObject(side).getString(piece)
     }
 
+    fun closeDrawing(view: View){
+
+        //Move to the main activity
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
+    }
+
     fun saveImage(view : View){
         drawingCanvas.createAnImage(this){
-            http.post(this, it, ARMOR_URL){
 
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+            http.post(this, it, ARMOR_URL){
                 //Print the response from the server
                 println(it?.getString("result"))
             }

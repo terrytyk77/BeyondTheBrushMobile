@@ -102,8 +102,8 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
                     //Remake the options list
                     val profileArray2: MutableList<String> = ArrayList()
-                    profileArray2.add("Profile 1")
-                    profileArray2.add("Profile 2")
+                    profileArray2.add("Profile 1 \uD83D\uDD12")
+                    profileArray2.add("Profile 2 \uD83D\uDD12")
 
                     //Add all the profiles the the drop down
                     for(i in 0 until currentUserFiles.userProfiles.length()){

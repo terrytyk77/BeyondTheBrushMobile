@@ -18,6 +18,7 @@ import com.beyondthebrushmobile.DrawingRoomActivity
 import com.beyondthebrushmobile.MainActivity
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.variables.defaultStrokeSize
+import kotlinx.android.synthetic.main.activity_drawing_room.view.*
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import kotlin.math.abs
@@ -82,12 +83,29 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         //Choose correct bitmap
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
 
+        //Update at real time
+        when(currentUserFiles.currentDirection){
+            0->{
+                extraBitmap1 = extraBitmap
+            }
+            1->{
+                extraBitmap2 = extraBitmap
+            }
+            2->{
+                extraBitmap3 = extraBitmap
+            }
+            3->{
+                extraBitmap4 = extraBitmap
+            }
+        }
+
         //Canvas borders
         canvas?.drawRect(frame, createBrush(newColor = colorRGB(255, 255, 255)))
 
     }
 
     fun reDrawCanvas(lastDirection: Int){
+
 
         println(lastDirection.toString() + "/" + currentUserFiles.currentDirection)
 
@@ -302,21 +320,47 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             println("Created the image")
 
             //Conversion||
+                //Bitmap 1
                 var baos = ByteArrayOutputStream()
-                extraBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+                extraBitmap1.compress(Bitmap.CompressFormat.PNG, 100, baos)
                 var imageBytes = baos.toByteArray()
-                var encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+                var encodedImage1 = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+                baos.close()
+
+                //Bitmap 2
+                var baos2 = ByteArrayOutputStream()
+                extraBitmap2.compress(Bitmap.CompressFormat.PNG, 100, baos2)
+                var imageBytes2 = baos2.toByteArray()
+                var encodedImage2 = Base64.encodeToString(imageBytes2, Base64.DEFAULT)
+                baos2.close()
+
+                //Bitmap 3
+                var baos3 = ByteArrayOutputStream()
+                extraBitmap3.compress(Bitmap.CompressFormat.PNG, 100, baos3)
+                var imageBytes3 = baos3.toByteArray()
+                var encodedImage3 = Base64.encodeToString(imageBytes3, Base64.DEFAULT)
+                baos3.close()
+
+                //Bitmap 4
+                var baos4 = ByteArrayOutputStream()
+                extraBitmap4.compress(Bitmap.CompressFormat.PNG, 100, baos4)
+                var imageBytes4 = baos4.toByteArray()
+                var encodedImage4 = Base64.encodeToString(imageBytes4, Base64.DEFAULT)
+                baos4.close()
+
             //__________||
 
-            println(encodedImage)
-
-            //val postData = JSONObject().put("image", encodedImage)
-
-            //Close the stream
-            baos.close()
+            val postData = JSONObject()
+                    .put("front", encodedImage1)
+                    .put("right", encodedImage2)
+                    .put("back", encodedImage3)
+                    .put("left", encodedImage4)
+                    .put("usedItem", currentUserFiles.itemID)
+                    .put("profileID", currentUserFiles.currentProfileID)
+                    .put("userID", currentUserFiles.userData?.getString("_id"))
 
             //Call the function
-            //toBeRun(postData)
+            toBeRun(postData)
         }
 
     //------------------------------------------------------||

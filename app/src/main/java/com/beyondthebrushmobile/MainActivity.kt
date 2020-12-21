@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     fun makeNewProfile(view: View, profileArray : MutableList<String>, currentProfileID: Int, toBeRun: (m : Int) -> Unit){
         println("Make a new profile")
 
-        val items = arrayOf("Profile 1 \uD83D\uDD12", "Profile 2 \uD83D\uDD12", "Cancel")
+        val items = arrayOf("Profile 1", "Profile 2", "Cancel")
 
         MaterialAlertDialogBuilder(this)
                 // Add customization options here

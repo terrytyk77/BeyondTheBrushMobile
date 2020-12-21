@@ -35,18 +35,18 @@
     <com.beyondthebrushmobile.classes.DrawingCanvas
         android:id="@+id/drawingCanvas"
         android:layout_width="300dp"
-        android:layout_height="350dp"
+        android:layout_height="325dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <codes.side.andcolorpicker.hsl.HSLColorPickerSeekBar
         android:id="@+id/colorSlider"
         android:layout_width="325dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:indeterminate="false"
         app:hslColoringMode="pure"
         app:hslMode="hue"
@@ -56,13 +56,14 @@
         app:layout_constraintTop_toBottomOf="@+id/strokeSizeSlider" />
 
     <!--Pickers-->
+
     <codes.side.andcolorpicker.alpha.HSLAlphaColorPickerSeekBar
         android:id="@+id/alphaSlider"
         android:layout_width="325dp"
         android:layout_height="40dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lightSlider" />
 
@@ -105,16 +106,6 @@
         app:layout_constraintTop_toBottomOf="@+id/itemPortrait" />
 
     <Button
-        android:id="@+id/Send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="saveImage"
-        android:text="@string/send"
-        tools:ignore="UsingOnClickInXml"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="64dp" />
-
-    <Button
         android:id="@+id/Redo"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -131,8 +122,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reset"
-        tools:layout_editor_absoluteX="313dp"
-        tools:layout_editor_absoluteY="64dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/moveToTheRight"
@@ -158,6 +149,56 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:scaleType="centerCrop"
+        android:tint="#202020"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:srcCompat="@drawable/white_square" />
+
+    <TextView
+        android:id="@+id/DrawingClosingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="closeDrawing"
+        android:text="❌"
+        android:textColor="#4CAF50"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/DrawingSaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:onClick="saveImage"
+        android:text="✔"
+        android:textColor="#4CAF50"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@+id/DrawingClosingButton"
+        app:layout_constraintStart_toEndOf="@+id/DrawingClosingButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currentSideText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
