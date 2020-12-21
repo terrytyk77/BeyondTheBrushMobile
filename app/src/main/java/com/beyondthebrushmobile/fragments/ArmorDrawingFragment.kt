@@ -47,6 +47,12 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         super.onViewCreated(view, savedInstanceState)
         super.onCreate(savedInstanceState)
 
+        //Set the current profile
+        if(currentUserFiles.itemID?.length!! > 0){
+            currentProfileID = (currentUserFiles.currentProfileID + 2)
+        }
+
+
         val profileArray: MutableList<String> = ArrayList()
         profileArray.add("Profile 1 \uD83D\uDD12")
         profileArray.add("Profile 2 \uD83D\uDD12")
@@ -63,7 +69,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         updateDropdown(view, profileArray)
 
         //Update the profiles display
-        updateCurrentProfile(view, 0)
+        updateCurrentProfile(view, currentProfileID)
 
     }
 
