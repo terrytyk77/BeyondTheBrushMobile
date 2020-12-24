@@ -30,7 +30,7 @@ class ArmorAdapter (var itemList:ArrayList<ArmorProfile>,var context:Context) : 
 
         //Look for the image on the profiles
         var base64String : String = ""
-        if(currentUserFiles.dropDownID > 1){
+        if(currentUserFiles.dropDownID > 1 && currentUserFiles.userProfiles.length() > currentUserFiles.currentProfileID){
             base64String = currentUserFiles.userProfiles.getJSONObject(currentUserFiles.currentProfileID).getJSONObject("front").getString(gridItem.armorName)
         }
 
