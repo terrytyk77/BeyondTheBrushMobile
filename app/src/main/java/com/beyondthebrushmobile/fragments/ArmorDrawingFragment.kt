@@ -59,7 +59,8 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
         //Add all the profiles the the drop down
         for(i in 0 until currentUserFiles.userProfiles.length()){
-            profileArray.add("Profile ${3+i}")
+            val profileName = currentUserFiles.userProfiles.getJSONObject(i).getJSONObject("profile").getString("name")
+            profileArray.add(profileName)
         }
 
         //Add the create a new profile button
@@ -106,7 +107,6 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                 currentUserFiles.currentProfileID = position - 2
             }
 
-
             //Reset the current profile ID
             currentProfileID = itemIdAtPos.toInt()
 
@@ -122,7 +122,8 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
                     //Add all the profiles the the drop down
                     for(i in 0 until currentUserFiles.userProfiles.length()){
-                        profileArray2.add("Profile ${3+i}")
+                        val profileName = currentUserFiles.userProfiles.getJSONObject(i).getJSONObject("profile").getString("name")
+                        profileArray2.add(profileName)
                     }
 
                     //Add the create a new profile button
@@ -139,7 +140,6 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                     dropdown.setText (profileArray[currentProfileID])
                     dropdown.setAdapter(profileAdapter2) //Update with the new adapter
                     updateCurrentProfile(view, itemIdAtPos.toInt())
-
 
                 }
 
@@ -191,7 +191,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                     armors.add(ArmorProfile(R.drawable.boots1,"Boots"))
                     armors.add(ArmorProfile(R.drawable.sword1,"Sword"))
                     armors.add(ArmorProfile(R.drawable.shield1,"Shield"))
-                }else if(currentDefault == 1) {
+                }else if(currentDefault == 1){
                     armors.add(ArmorProfile(R.drawable.hat2,"Head"))
                     armors.add(ArmorProfile(R.drawable.gloves2,"Gloves"))
                     armors.add(ArmorProfile(R.drawable.body_clothes2,"Chest"))
@@ -211,12 +211,9 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         }
 
 
-
         armorGridView.adapter = armorAdapter
 
         armorGridView.setOnItemClickListener { parent, view, position, id ->
-            println("$parent $view $position $id")
-
             if(currentProfileID == 0 || currentProfileID == 1){
                 (activity as MainActivity).notification("Cannot edit default profiles!")
             }else{
@@ -224,11 +221,6 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                 val armorType : String = armors[position].armorName
                 enterDrawingRoom(view, armorType)
             }
-
-
-
-
-
         }
 
     }

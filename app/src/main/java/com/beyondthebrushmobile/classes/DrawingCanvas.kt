@@ -107,7 +107,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
     fun reDrawCanvas(lastDirection: Int){
 
-
         println(lastDirection.toString() + "/" + currentUserFiles.currentDirection)
 
         //Store the last state
@@ -263,6 +262,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         }
     }
 
+    //Convert Colors from RGB to IntHSLColor
     private fun colorRGB(r: Int, g: Int, b: Int) : IntegerHSLColor{
         return IntegerHSLColor().also {
             it.setFromColorInt(
@@ -337,8 +337,8 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
         fun setupDrawing(front: String, right: String, back: String, left: String){
 
-
             //Set the bitmaps to the correct drawings
+
             //front
             val decodedFront = Base64.decode(front, Base64.DEFAULT)
             val decodedFrontByte = BitmapFactory.decodeByteArray(decodedFront, 0, decodedFront.size)
