@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             else{
-                notification("Name not given!")
+                notification("Failed! Name not given!")
             }
         }
         .show()

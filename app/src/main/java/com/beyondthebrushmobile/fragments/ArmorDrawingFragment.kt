@@ -64,7 +64,9 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         }
 
         //Add the create a new profile button
-        profileArray.add("New Profile")
+        if(currentUserFiles.userProfiles.length() < 8){
+            profileArray.add("New Profile")
+        }
 
         //Update the dropdown
         updateDropdown(view, profileArray)
@@ -127,7 +129,9 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                     }
 
                     //Add the create a new profile button
-                    profileArray2.add("New Profile")
+                    if(currentUserFiles.userProfiles.length() < 8){
+                        profileArray2.add("New Profile")
+                    }
 
                     profileArray = profileArray2
 
