@@ -6,15 +6,390 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Talent Tree"
-        android:textSize="36sp"
+    <!--Background-->
+    <ImageView
+        android:id="@+id/roomBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/talent_tree_background"
+        android:scaleType="centerCrop"
+        android:tint="#40000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/talent_tree_background" />
+
+    <!--Node 0-->
+    <ImageView
+        android:id="@+id/node0_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node0_background"
+        app:layout_constraintEnd_toEndOf="@+id/node0_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node0_background"
+        app:layout_constraintTop_toTopOf="@+id/node0_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node0" />
+    <!--||||| -->
+
+    <!--Node 1-->
+
+    <ImageView
+        android:id="@+id/node1_background"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/node0_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node1_background"
+        app:layout_constraintEnd_toEndOf="@+id/node1_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node1_background"
+        app:layout_constraintTop_toTopOf="@+id/node1_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node1" />
+    <!--||||| -->
+
+    <!--Node 2-->
+
+    <ImageView
+        android:id="@+id/node2_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintEnd_toEndOf="@+id/roomBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/node0_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node2_background"
+        app:layout_constraintEnd_toEndOf="@+id/node2_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node2_background"
+        app:layout_constraintTop_toTopOf="@+id/node2_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node2" />
+    <!--||||| -->
+
+    <!--Node 3-->
+
+    <ImageView
+        android:id="@+id/node3_background"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintEnd_toEndOf="@+id/roomBackground"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/node0_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node3_background"
+        app:layout_constraintEnd_toEndOf="@+id/node3_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node3_background"
+        app:layout_constraintTop_toTopOf="@+id/node3_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node3" />
+    <!--||||| -->
+
+    <!--Node 4-->
+
+    <ImageView
+        android:id="@+id/node4_background"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintStart_toStartOf="@+id/node1_background"
+        app:layout_constraintTop_toBottomOf="@+id/node1_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node4_background"
+        app:layout_constraintEnd_toEndOf="@+id/node4_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node4_background"
+        app:layout_constraintTop_toTopOf="@+id/node4_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node4" />
+    <!--||||| -->
+
+    <!--Node 5-->
+
+    <ImageView
+        android:id="@+id/node5_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="45dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintBottom_toTopOf="@+id/node10"
+        app:layout_constraintStart_toStartOf="@+id/node2_background"
+        app:layout_constraintTop_toBottomOf="@+id/node2_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node5_background"
+        app:layout_constraintEnd_toEndOf="@+id/node5_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node5_background"
+        app:layout_constraintTop_toTopOf="@+id/node5_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node5" />
+    <!--||||| -->
+
+    <!--Node 6-->
+
+    <ImageView
+        android:id="@+id/node6_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="45dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintBottom_toTopOf="@+id/node10"
+        app:layout_constraintEnd_toEndOf="@+id/node2_background"
+        app:layout_constraintTop_toBottomOf="@+id/node2_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node6_background"
+        app:layout_constraintEnd_toEndOf="@+id/node6_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node6_background"
+        app:layout_constraintTop_toTopOf="@+id/node6_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node6" />
+    <!--||||| -->
+
+    <!--Node 7-->
+
+    <ImageView
+        android:id="@+id/node7_background"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintEnd_toEndOf="@+id/node3_background"
+        app:layout_constraintTop_toBottomOf="@+id/node3_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node7_background"
+        app:layout_constraintEnd_toEndOf="@+id/node7_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node7_background"
+        app:layout_constraintTop_toTopOf="@+id/node7_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node7" />
+    <!--||||| -->
+
+    <!--Node 8-->
+
+    <ImageView
+        android:id="@+id/node8_background"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintBottom_toTopOf="@+id/node10"
+        app:layout_constraintStart_toStartOf="@+id/node4_background"
+        app:layout_constraintTop_toBottomOf="@+id/node4_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node8_background"
+        app:layout_constraintEnd_toEndOf="@+id/node8_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node8_background"
+        app:layout_constraintTop_toTopOf="@+id/node8_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node8" />
+    <!--||||| -->
+
+    <!--Node 9-->
+
+    <ImageView
+        android:id="@+id/node9_background"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintBottom_toTopOf="@+id/node10_background"
+        app:layout_constraintEnd_toEndOf="@+id/node7_background"
+        app:layout_constraintTop_toBottomOf="@+id/node7_background"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node9_background"
+        app:layout_constraintEnd_toEndOf="@+id/node9_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node9_background"
+        app:layout_constraintTop_toTopOf="@+id/node9_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node9" />
+    <!--||||| -->
+
+    <!--Node 10-->
+
+    <ImageView
+        android:id="@+id/node10_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/slot_background"
+        app:layout_constraintBottom_toBottomOf="@+id/roomBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/node_slot"
+        app:tint="#000000" />
+
+    <ImageView
+        android:id="@+id/node10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/node_image"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/node10_background"
+        app:layout_constraintEnd_toEndOf="@+id/node10_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/node10_background"
+        app:layout_constraintTop_toTopOf="@+id/node10_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/node10" />
+    <!--||||| -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,5 +23,8 @@
     <string name="right">right</string>
     <string name="left">Left</string>
     <string name="todo">TODO</string>
+    <string name="talent_tree_background">Talent Tree Background</string>
+    <string name="slot_background">slot background</string>
+    <string name="node_image">node image</string>
 
 </resources>
