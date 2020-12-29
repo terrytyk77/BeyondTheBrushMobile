@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.beyondthebrushmobile.classes.NodeCalculation
 import com.beyondthebrushmobile.fragments.ArmorDrawingFragment
 import com.beyondthebrushmobile.fragments.MiniGameFragment
 import com.beyondthebrushmobile.fragments.TalentTreeFragment
@@ -32,7 +30,10 @@ class MainActivity : AppCompatActivity() {
         bottom_nav_bar.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.ic_armor_drawing -> fragmentManager(ArmorDrawingFragment())
-                R.id.ic_talent_tree -> fragmentManager(TalentTreeFragment())
+                R.id.ic_talent_tree -> {
+                    updateSlots()
+                    fragmentManager(TalentTreeFragment())
+                }
                 R.id.ic_mini_game -> fragmentManager(MiniGameFragment())
             }
             true
@@ -51,6 +52,13 @@ class MainActivity : AppCompatActivity() {
                 .setTitle(message)
                 .setItems(arrayOf("ok")){_,_->}
                 .show()
+    }
+
+    //Clicked on the node
+    fun selectedTreeNode(view: View){
+
+        val name = view.context.resources.getResourceEntryName(view.id)
+        println(name)
     }
 
     fun makeNewProfile(view: View, profileArray : MutableList<String>, currentProfileID: Int, toBeRun: (m : Int) -> Unit){
@@ -115,4 +123,77 @@ class MainActivity : AppCompatActivity() {
         .show()
         input.layoutParams = layoutParams
     }
+
+
+    //Update the talent tree slots
+    fun updateSlots(){
+        //Store the nodes
+        val ownedNodes = mutableListOf<ImageView?>()
+        val lockableNodes = mutableListOf<ImageView?>()
+        val unavailableNodes = mutableListOf<ImageView?>()
+
+        //Switch function to handle elements
+        fun nodeSwitch(elementID : Int){
+            val nodeView = this?.findViewById<ImageView>(elementID)
+            val nodeName = resources.getResourceEntryName(elementID)
+
+            //Get the correct nodes on the respective places
+            when(NodeCalculation.getNodeStatus(nodeName)){
+                "type0"->{
+                    ownedNodes.add(nodeView)
+                }
+                "type1"->{
+                    lockableNodes.add(nodeView)
+                }
+                "type2"->{
+                    unavailableNodes.add(nodeView)
+                }
+            }
+        }
+
+        //Set the nodes to their according lists
+        nodeSwitch(R.id.node0)
+        nodeSwitch(R.id.node1)
+        nodeSwitch(R.id.node2)
+        nodeSwitch(R.id.node3)
+        nodeSwitch(R.id.node4)
+        nodeSwitch(R.id.node5)
+        nodeSwitch(R.id.node6)
+        nodeSwitch(R.id.node7)
+        nodeSwitch(R.id.node8)
+        nodeSwitch(R.id.node9)
+        nodeSwitch(R.id.node10)
+
+
+        //Loop through the owned nodes
+        for(node in ownedNodes){
+            node?.setColorFilter( Color.parseColor(NodeCalculation.colorOwned) )
+        }
+
+        //Loop through the lockable nodes
+        for(node in lockableNodes){
+            node?.setColorFilter( Color.parseColor(NodeCalculation.colorLockable) )
+        }
+
+        //Loop through the unavailable nodes
+        for(node in unavailableNodes){
+            node?.setColorFilter( Color.parseColor(NodeCalculation.colorUnavailable) )
+        }
+
+        //val a = TalentTreeFragment.node0
+        //println(a)
+
+        //val a = TalentTreeFragment?.findViewById<ImageView>(R.id.node0)
+        //println(a)
+        //activity?.findViewById<ImageView>(R.id.node0)?.setColorFilter(Color.parseColor("#66000000"))
+    }
+
+
+
+
+
+
+
+
+
 }

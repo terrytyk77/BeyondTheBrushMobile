@@ -45,13 +45,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node0"
         app:layout_constraintBottom_toBottomOf="@+id/node0_background"
         app:layout_constraintEnd_toEndOf="@+id/node0_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node0_background"
         app:layout_constraintTop_toTopOf="@+id/node0_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node0" />
+        app:srcCompat="@drawable/node0"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 1-->
@@ -80,13 +83,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node1"
         app:layout_constraintBottom_toBottomOf="@+id/node1_background"
         app:layout_constraintEnd_toEndOf="@+id/node1_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node1_background"
         app:layout_constraintTop_toTopOf="@+id/node1_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node1" />
+        app:srcCompat="@drawable/node1"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 2-->
@@ -114,13 +120,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node2"
         app:layout_constraintBottom_toBottomOf="@+id/node2_background"
         app:layout_constraintEnd_toEndOf="@+id/node2_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node2_background"
         app:layout_constraintTop_toTopOf="@+id/node2_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node2" />
+        app:srcCompat="@drawable/node2"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 3-->
@@ -149,13 +158,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node3"
         app:layout_constraintBottom_toBottomOf="@+id/node3_background"
         app:layout_constraintEnd_toEndOf="@+id/node3_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node3_background"
         app:layout_constraintTop_toTopOf="@+id/node3_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node3" />
+        app:srcCompat="@drawable/node3"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 4-->
@@ -182,13 +194,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node4"
         app:layout_constraintBottom_toBottomOf="@+id/node4_background"
         app:layout_constraintEnd_toEndOf="@+id/node4_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node4_background"
         app:layout_constraintTop_toTopOf="@+id/node4_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node4" />
+        app:srcCompat="@drawable/node4"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 5-->
@@ -216,13 +231,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node5"
         app:layout_constraintBottom_toBottomOf="@+id/node5_background"
         app:layout_constraintEnd_toEndOf="@+id/node5_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node5_background"
         app:layout_constraintTop_toTopOf="@+id/node5_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node5" />
+        app:srcCompat="@drawable/node5"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 6-->
@@ -250,13 +268,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node6"
         app:layout_constraintBottom_toBottomOf="@+id/node6_background"
         app:layout_constraintEnd_toEndOf="@+id/node6_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node6_background"
         app:layout_constraintTop_toTopOf="@+id/node6_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node6" />
+        app:srcCompat="@drawable/node6"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 7-->
@@ -283,13 +304,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node7"
         app:layout_constraintBottom_toBottomOf="@+id/node7_background"
         app:layout_constraintEnd_toEndOf="@+id/node7_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node7_background"
         app:layout_constraintTop_toTopOf="@+id/node7_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node7" />
+        app:srcCompat="@drawable/node7"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 8-->
@@ -316,13 +340,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node8"
         app:layout_constraintBottom_toBottomOf="@+id/node8_background"
         app:layout_constraintEnd_toEndOf="@+id/node8_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node8_background"
         app:layout_constraintTop_toTopOf="@+id/node8_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node8" />
+        app:srcCompat="@drawable/node8"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 9-->
@@ -349,13 +376,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node9"
         app:layout_constraintBottom_toBottomOf="@+id/node9_background"
         app:layout_constraintEnd_toEndOf="@+id/node9_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node9_background"
         app:layout_constraintTop_toTopOf="@+id/node9_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node9" />
+        app:srcCompat="@drawable/node9"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
     <!--Node 10-->
@@ -383,13 +413,16 @@
         android:clickable="true"
         android:contentDescription="@string/node_image"
         android:focusable="true"
+        android:onClick="selectedTreeNode"
+        android:tag="node10"
         app:layout_constraintBottom_toBottomOf="@+id/node10_background"
         app:layout_constraintEnd_toEndOf="@+id/node10_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/node10_background"
         app:layout_constraintTop_toTopOf="@+id/node10_background"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/node10" />
+        app:srcCompat="@drawable/node10"
+        tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
