@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                 val yourBalance = currentUserFiles.userData?.getJSONObject("stats")?.getInt("ressources")!!
 
                 if(yourBalance >= nodeObject.price){
+                //Proccess the purchase
                     //This user has enough money
                     //Handle visuals
                     progressCircle.visibility = View.VISIBLE
