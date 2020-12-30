@@ -81,9 +81,6 @@ class MainActivity : AppCompatActivity() {
             }
             .setPositiveButton(nodeObject.price.toString() + " resources"){dialog, which ->
                 //Proccess the purchase
-                val yourBalance = currentUserFiles.userData?.getJSONObject("stats")?.getInt("ressources")!!
-
-                if(yourBalance >= nodeObject.price){
                     //This user has enough money
                     //Handle visuals
                     progressCircle.visibility = View.VISIBLE
@@ -104,6 +101,7 @@ class MainActivity : AppCompatActivity() {
                         if(it!!.getBoolean("accepted")){
 
                             currentUserFiles.userData!!.put("talentTree", it.getJSONObject("newtree"))
+                            currentUserFiles.userData!!.getJSONObject("stats")!!.put("ressources", it.getInt("resources"))
 
                             //The node was purchased
                             notification(it!!.getString("message"))
@@ -111,20 +109,16 @@ class MainActivity : AppCompatActivity() {
                             updateMethod()
 
                         }else{
+
+                            currentUserFiles.userData!!.put("talentTree", it.getJSONObject("newtree"))
+                            currentUserFiles.userData!!.getJSONObject("stats")!!.put("ressources", it.getInt("resources"))
+
                             //The node wasn't purchased
                             notification(it!!.getString("message"))
                         }
 
                     }
-                }else{
 
-                    //In case the user does not have enough money for the purchase
-                    MaterialAlertDialogBuilder(this)
-                        .setTitle("Not enough resources")
-                        .setMessage("You are short by " +  (nodeObject.price - yourBalance).toString() + " resources.")
-                        .setNegativeButton("OK"){_,_->}
-                        .show()
-                }
 
             }
             .show()
