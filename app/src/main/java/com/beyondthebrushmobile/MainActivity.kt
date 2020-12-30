@@ -1,5 +1,6 @@
 package com.beyondthebrushmobile
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.beyondthebrushmobile.classes.NodeCalculation
+import com.beyondthebrushmobile.classes.treeInformation
 import com.beyondthebrushmobile.fragments.ArmorDrawingFragment
 import com.beyondthebrushmobile.fragments.MiniGameFragment
 import com.beyondthebrushmobile.fragments.TalentTreeFragment
@@ -16,6 +18,7 @@ import com.beyondthebrushmobile.services.http
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_talent_tree.*
 import org.json.JSONObject
 
 
@@ -54,11 +57,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Clicked on the node
+    @SuppressLint("WrongConstant")
     fun selectedTreeNode(view: View){
 
         val name = view.context.resources.getResourceEntryName(view.id)
-        println(name)
+
+        val nodeObject = treeInformation.getNode(name)
+
+        //Show the dialog
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Unlock " + nodeObject.name)
+            .setMessage(nodeObject.desc)
+            .setNegativeButton("Cancel"){dialog, which ->
+
+            }
+            .setPositiveButton(nodeObject.price.toString() + " resources"){dialog, which ->
+                //Proccess the purchase
+
+                //Handle visuals
+                progressCircle.visibility = 1
+                darkOverlay.visibility = 1
+            }
+            .show()
+
+
     }
+
 
     fun makeNewProfile(view: View, profileArray : MutableList<String>, currentProfileID: Int, toBeRun: (m : Int) -> Unit){
 

@@ -19,7 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/talent_tree_background" />
+        app:srcCompat="@drawable/talent_tree_background"
+        tools:ignore="UseAppTint" />
 
     <!--Node 0-->
     <ImageView
@@ -424,5 +425,38 @@
         app:srcCompat="@drawable/node10"
         tools:ignore="UsingOnClickInXml" />
     <!--||||| -->
+
+    <ImageView
+        android:id="@+id/darkOverlay"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        android:tint="#000000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/white_square"
+        tools:ignore="MissingConstraints,UseAppTint" />
+
+    <ProgressBar
+        android:id="@+id/progressCircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:minWidth="120dp"
+        android:minHeight="120dp"
+        android:visibility="invisible"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/roomBackground"
+        tools:ignore="MissingConstraints" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
