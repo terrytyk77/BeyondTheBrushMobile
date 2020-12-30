@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
             }
             .setPositiveButton(nodeObject.price.toString() + " resources"){dialog, which ->
-                //Proccess the purchase
+                //Process the purchase
                 val yourBalance = currentUserFiles.userData?.getJSONObject("stats")?.getInt("ressources")!!
 
                 if(yourBalance >= nodeObject.price){
