@@ -1,6 +1,7 @@
 package com.beyondthebrushmobile
 
 import android.annotation.SuppressLint
+import android.app.Notification
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,12 +18,15 @@ import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.services.http
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textview.MaterialTextView
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_talent_tree.*
 import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var updateMethod : ()->Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,10 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    fun giveTheUpdateMethod(action : ()->Unit){
+        updateMethod = action
     }
 
     private fun fragmentManager(fragment: Fragment):Unit{
@@ -73,10 +81,51 @@ class MainActivity : AppCompatActivity() {
             }
             .setPositiveButton(nodeObject.price.toString() + " resources"){dialog, which ->
                 //Proccess the purchase
+                val yourBalance = currentUserFiles.userData?.getJSONObject("stats")?.getInt("ressources")!!
 
-                //Handle visuals
-                progressCircle.visibility = 1
-                darkOverlay.visibility = 1
+                if(yourBalance >= nodeObject.price){
+                    //This user has enough money
+                    //Handle visuals
+                    progressCircle.visibility = View.VISIBLE
+                    darkOverlay.visibility = View.VISIBLE
+
+                    //Data to be sent
+                    val postBody = JSONObject()
+                        .put("id", currentUserFiles.userData!!.getString("_id"))
+                        .put("tree", currentUserFiles.userData!!.getJSONObject("talentTree"))
+                        .put("node", JSONObject(Gson().toJson(nodeObject)))
+
+                    //Handle the connection to the server
+                    http.post(this, postBody, "/save/saveNode"){it->
+
+                        progressCircle.visibility= View.INVISIBLE
+                        darkOverlay.visibility = View.INVISIBLE
+
+                        if(it!!.getBoolean("accepted")){
+
+                            currentUserFiles.userData!!.put("talentTree", it.getJSONObject("newtree"))
+
+                            //The node was purchased
+                            notification(it!!.getString("message"))
+
+                            updateMethod()
+
+                        }else{
+                            //The node wasn't purchased
+                            notification(it!!.getString("message"))
+                        }
+
+                    }
+                }else{
+
+                    //In case the user does not have enough money for the purchase
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Not enough resources")
+                        .setMessage("You are short by " +  (nodeObject.price - yourBalance).toString() + " resources.")
+                        .setNegativeButton("OK"){_,_->}
+                        .show()
+                }
+
             }
             .show()
 

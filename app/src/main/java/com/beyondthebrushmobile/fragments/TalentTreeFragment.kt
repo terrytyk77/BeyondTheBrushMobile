@@ -1,5 +1,6 @@
 package com.beyondthebrushmobile.fragments
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +20,6 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View?
     {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_talent_tree, container, false)
     }
@@ -27,9 +27,11 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
     override fun onResume() {
         super.onResume()
 
-        updateSlots()
-        println(view?.findViewById(R.id.node0))
+        (activity as MainActivity).giveTheUpdateMethod(){
+            updateSlots()
+        }
 
+        updateSlots()
     }
 
 

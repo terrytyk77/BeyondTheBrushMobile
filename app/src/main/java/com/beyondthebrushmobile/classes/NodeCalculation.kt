@@ -3,6 +3,7 @@ package com.beyondthebrushmobile.classes
 import android.widget.ImageView
 import com.beyondthebrushmobile.R
 import com.beyondthebrushmobile.localStorage.currentUserFiles
+import org.json.JSONObject
 
 object NodeCalculation {
     const val colorOwned = "#334CAF50"
@@ -16,6 +17,20 @@ object NodeCalculation {
         var treeBoolean : Boolean = false //Has this node
         if(treeObject != null){
             treeBoolean = treeObject.getBoolean(viewName)
+        }else{
+            currentUserFiles.userData!!.put("talentTree", JSONObject()
+                .put("node0", false)
+                .put("node1", false)
+                .put("node2", false)
+                .put("node3", false)
+                .put("node4", false)
+                .put("node5", false)
+                .put("node6", false)
+                .put("node7", false)
+                .put("node8", false)
+                .put("node9", false)
+                .put("node10", false)
+            )
         }
 
         if(treeBoolean){
@@ -101,7 +116,7 @@ object treeInformation{
             "node0",
             "Flash Strike",
             "Basic spell increases your movement speed by 10% for 6 seconds. Not stackable.",
-            200
+            250
         ),
 
         //node1
