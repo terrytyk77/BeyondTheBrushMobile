@@ -22,7 +22,165 @@
         app:srcCompat="@drawable/talent_tree_background"
         tools:ignore="UseAppTint" />
 
+
+    <!-- Lines for the nodes connection -->
+
+    <ImageView
+        android:id="@+id/separator1"
+        android:layout_width="89dp"
+        android:layout_height="178dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="40dp"
+        android:rotation="40"
+        android:scaleType="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator"
+        android:layout_width="89dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="85dp"
+        android:rotation="-40"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator2"
+        android:layout_width="87dp"
+        android:layout_height="279dp"
+        android:layout_marginEnd="32dp"
+        android:rotation="0"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator11"
+        android:layout_width="86dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="45dp"
+        android:rotation="0"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/roomBackground"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator3"
+        android:layout_width="87dp"
+        android:layout_height="279dp"
+        android:layout_marginStart="32dp"
+        android:rotation="0"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator4"
+        android:layout_width="78dp"
+        android:layout_height="188dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="25dp"
+        android:rotation="45"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator6"
+        android:layout_width="78dp"
+        android:layout_height="188dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="25dp"
+        android:rotation="-45"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator7"
+        android:layout_width="78dp"
+        android:layout_height="188dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginBottom="65dp"
+        android:rotation="-15"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator10"
+        android:layout_width="78dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="145dp"
+        android:rotation="-15"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator8"
+        android:layout_width="78dp"
+        android:layout_height="188dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="65dp"
+        android:rotation="15"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
+    <ImageView
+        android:id="@+id/separator9"
+        android:layout_width="78dp"
+        android:layout_height="188dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="200dp"
+        android:rotation="15"
+        android:scaleType="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/separator"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/separator_element" />
+
     <!--Node 0-->
+
     <ImageView
         android:id="@+id/node0_background"
         android:layout_width="85dp"
@@ -439,7 +597,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/value_holder"
-        tools:ignore="UseAppTint" />
+        tools:ignore="UseAppTint"
+        android:contentDescription="@string/holder_for_the_resources" />
 
     <TextView
         android:id="@+id/resourcesLabel"
@@ -448,13 +607,14 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center|left"
-        android:text="0"
+        android:text="@string/_0"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/resources_background"
         app:layout_constraintRight_toRightOf="@+id/resources_background"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/resources_background" />
+        app:layout_constraintTop_toTopOf="@+id/resources_background"
+        tools:ignore="RtlHardcoded" />
 
     <!-- For network loading -->
 
@@ -472,7 +632,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/white_square"
-        tools:ignore="MissingConstraints,UseAppTint" />
+        tools:ignore="MissingConstraints,UseAppTint"
+        android:contentDescription="@string/a_dark_overlay" />
 
     <ProgressBar
         android:id="@+id/progressCircle"
@@ -497,7 +658,8 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/resources_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/box_icon" />
+        app:srcCompat="@drawable/box_icon"
+        android:contentDescription="@string/resources_icon" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -505,6 +667,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.18248175" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

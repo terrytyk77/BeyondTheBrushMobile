@@ -26,5 +26,10 @@
     <string name="talent_tree_background">Talent Tree Background</string>
     <string name="slot_background">slot background</string>
     <string name="node_image">node image</string>
+    <string name="separator_element">Separator Element</string>
+    <string name="resources_icon">Resources icon</string>
+    <string name="a_dark_overlay">A dark overlay</string>
+    <string name="_0">0</string>
+    <string name="holder_for_the_resources">Holder for the resources</string>
 
 </resources>
