@@ -15,6 +15,7 @@ import com.beyondthebrushmobile.classes.ArmorProfile
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.variables.Armor_ID
 import com.beyondthebrushmobile.variables.Profile_ID
+import com.beyondthebrushmobile.variables.profile_limit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_armor_drawing.*
@@ -64,7 +65,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         }
 
         //Add the create a new profile button
-        if(currentUserFiles.userProfiles.length() < 8){
+        if(currentUserFiles.userProfiles.length() < profile_limit){
             profileArray.add("New Profile")
         }
 
@@ -113,7 +114,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
             currentProfileID = itemIdAtPos.toInt()
 
             //Clicked the create new profile
-            if(itemIdAtPos.toInt() + 1 == profileArray.size){
+            if(itemIdAtPos.toInt() + 1 == profileArray.size && currentUserFiles.userProfiles.length() < profile_limit){
 
                 (activity as MainActivity).makeNewProfile(view, profileArray, currentProfileID){
 
@@ -129,7 +130,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                     }
 
                     //Add the create a new profile button
-                    if(currentUserFiles.userProfiles.length() < 8){
+                    if(currentUserFiles.userProfiles.length() < profile_limit){
                         profileArray2.add("New Profile")
                     }
 
