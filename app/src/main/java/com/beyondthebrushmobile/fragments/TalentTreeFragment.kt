@@ -65,13 +65,13 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
     }
 
     //Update the talent tree slots
-    fun updateSlots(){
+    private fun updateSlots(){
         //Store the nodes
         val ownedNodes = mutableListOf<ImageView?>()
         val lockableNodes = mutableListOf<ImageView?>()
         val unavailableNodes = mutableListOf<ImageView?>()
 
-        val number = currentUserFiles.userData!!.getJSONObject("stats").getInt("ressources")
+        val number = currentUserFiles.userData!!.getJSONObject("stats").getInt("resources")
         resourcesLabel.text = number.toString()
 
         //Switch function to handle elements

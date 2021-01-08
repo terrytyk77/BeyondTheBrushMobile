@@ -168,7 +168,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
 
                     //Locally save the user data
-                    currentUserFiles.userData = it
+                    currentUserFiles.userData = it.getJSONObject("body")
 
                 }else{
 
@@ -177,12 +177,5 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    fun offlineLogin(view: View){
-        //Create the intent
-        val intent = Intent(this, MainActivity::class.java)
-        //Send him to the following activity
-        startActivity(intent)
     }
 }
