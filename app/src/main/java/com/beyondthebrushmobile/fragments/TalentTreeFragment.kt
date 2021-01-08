@@ -1,18 +1,23 @@
 package com.beyondthebrushmobile.fragments
 
-import android.R.string
 import android.graphics.Color
+import android.graphics.Insets.add
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.beyondthebrushmobile.MainActivity
 import com.beyondthebrushmobile.R
+import com.beyondthebrushmobile.classes.ArmorProfile
 import com.beyondthebrushmobile.classes.NodeCalculation
+import com.beyondthebrushmobile.classes.NodeLocation
+import com.beyondthebrushmobile.classes.TreeCanvas
 import com.beyondthebrushmobile.localStorage.currentUserFiles
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_talent_tree.*
 
 
@@ -23,7 +28,30 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
     ): View?
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_talent_tree, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_talent_tree, container, false)
+
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            var nodeImages = arrayListOf<NodeLocation>()
+
+            //Adding All the Positions Before Inflating the Views
+            nodeImages.add(NodeLocation(node0))
+            nodeImages.add(NodeLocation(node1))
+            nodeImages.add(NodeLocation(node2))
+            nodeImages.add(NodeLocation(node3))
+            nodeImages.add(NodeLocation(node4))
+            nodeImages.add(NodeLocation(node5))
+            nodeImages.add(NodeLocation(node6))
+            nodeImages.add(NodeLocation(node7))
+            nodeImages.add(NodeLocation(node8))
+            nodeImages.add(NodeLocation(node9))
+            nodeImages.add(NodeLocation(node10))
+
+            val relativeLayout = rootView.findViewById(R.id.TreeTalent) as RelativeLayout
+            relativeLayout.addView(activity?.let { TreeCanvas(it, nodeImages)})
+
+        }, 0)
+
+        return rootView
     }
 
     override fun onResume() {
@@ -35,7 +63,6 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
 
         updateSlots()
     }
-
 
     //Update the talent tree slots
     fun updateSlots(){
@@ -79,7 +106,6 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         nodeSwitch(R.id.node9)
         nodeSwitch(R.id.node10)
 
-
         //Loop through the owned nodes
         for(node in ownedNodes){
             node?.setColorFilter(Color.parseColor(NodeCalculation.colorOwned))
@@ -99,5 +125,4 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         }
 
     }
-
 }
