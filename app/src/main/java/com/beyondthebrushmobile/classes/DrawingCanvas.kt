@@ -85,17 +85,17 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
 
         //Update at real time
-        when(currentUserFiles.currentDirection){
-            0->{
+        when(currentUserFiles.currentDirection) {
+            0 -> {
                 extraBitmap1 = extraBitmap
             }
-            1->{
+            1 -> {
                 extraBitmap2 = extraBitmap
             }
-            2->{
+            2 -> {
                 extraBitmap3 = extraBitmap
             }
-            3->{
+            3 -> {
                 extraBitmap4 = extraBitmap
             }
         }
@@ -142,8 +142,9 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         }
 
         println("What we got")
-        println(extraBitmap)
 
+        pathArray.clear()
+        pathArrayUndone.clear()
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
         this.invalidate()
@@ -176,19 +177,20 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         //Setup the variables here
         if(::holderExtraBitmap1.isInitialized){
 
-            extraBitmap = holderExtraBitmap1
+            extraBitmap = Bitmap.createBitmap(holderExtraBitmap1)
 
             //front
-            extraBitmap1 = holderExtraBitmap1
+            extraBitmap1 = Bitmap.createBitmap(holderExtraBitmap1)
 
             //right
-            extraBitmap2 = holderExtraBitmap2
+            extraBitmap2 = Bitmap.createBitmap(holderExtraBitmap2)
 
             //back
-            extraBitmap3 = holderExtraBitmap3
+            extraBitmap3 = Bitmap.createBitmap(holderExtraBitmap3)
 
             //left
-            extraBitmap4 = holderExtraBitmap4
+            extraBitmap4 = Bitmap.createBitmap(holderExtraBitmap4)
+
         }
 
         extraCanvas = Canvas(extraBitmap)
@@ -293,31 +295,69 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
         fun undo(){
             if (pathArray.isNotEmpty()){
-                canvasClear()
+
+                when(currentUserFiles.currentDirection) {
+                    0 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap1)
+                    }
+                    1 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap2)
+                    }
+                    2 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap3)
+                    }
+                    3 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap4)
+                    }
+                }
+
+                extraCanvas = Canvas(extraBitmap)
+                extraCanvas.drawColor(backgroundColor)
+
                 pathArrayUndone[pathArray.keys.last()] = pathArray.values.last()
                 pathArray.remove(pathArray.keys.last())
 
                 pathArray.forEach { (path, paint) ->
                     extraCanvas.drawPath(path, paint)
                 }
-                invalidate()
+
+                this.invalidate()
+
             }else{
                 //To Be Replaced By A Toasted
                 println("Can't Undo More!")
             }
-
         }
 
         fun redo(){
             if (pathArrayUndone.isNotEmpty()){
-                canvasClear()
+                when(currentUserFiles.currentDirection) {
+                    0 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap1)
+                    }
+                    1 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap2)
+                    }
+                    2 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap3)
+                    }
+                    3 -> {
+                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap4)
+                    }
+                }
+
+                extraCanvas = Canvas(extraBitmap)
+                extraCanvas.drawColor(backgroundColor)
+
                 pathArray[pathArrayUndone.keys.last()] = pathArrayUndone.values.last()
                 pathArrayUndone.remove(pathArray.keys.last())
 
                 pathArray.forEach { (path, paint) ->
                     extraCanvas.drawPath(path, paint)
                 }
-                invalidate()
+
+                this.invalidate()
+
             }else{
                 //To Be Replaced By A Toasted
                 println("Can't Redo More!")
