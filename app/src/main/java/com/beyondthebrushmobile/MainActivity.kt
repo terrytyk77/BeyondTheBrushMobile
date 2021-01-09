@@ -104,7 +104,9 @@ class MainActivity : AppCompatActivity() {
 
                         if(it!!.getBoolean("accepted")){
 
+                            //Update the current files
                             currentUserFiles.userData!!.put("talentTree", it.getJSONObject("newtree"))
+                            currentUserFiles.userData!!.getJSONObject("stats").put("resources", it.getInt("resources"))
 
                             //The node was purchased
                             notification(it!!.getString("message"))

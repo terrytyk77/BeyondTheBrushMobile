@@ -73,6 +73,7 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         val unavailableNodes = mutableListOf<ImageView?>()
 
         val number = currentUserFiles.userData!!.getJSONObject("stats").getInt("resources")
+
         resourcesLabel.text = number.toString()
 
         //Switch function to handle elements
