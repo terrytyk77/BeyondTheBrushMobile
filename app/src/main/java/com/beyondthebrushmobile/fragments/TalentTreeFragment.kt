@@ -19,6 +19,7 @@ import com.beyondthebrushmobile.classes.NodeLocation
 import com.beyondthebrushmobile.classes.TreeCanvas
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import kotlinx.android.synthetic.main.fragment_talent_tree.*
+import kotlin.math.absoluteValue
 
 
 class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {

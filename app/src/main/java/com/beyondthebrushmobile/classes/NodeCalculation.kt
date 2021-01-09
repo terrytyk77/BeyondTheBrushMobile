@@ -6,9 +6,12 @@ import com.beyondthebrushmobile.localStorage.currentUserFiles
 import org.json.JSONObject
 
 object NodeCalculation {
-    const val colorOwned = "#334CAF50"
-    const val colorLockable = "#00000000"
-    const val colorUnavailable = "#66000000"
+    //White
+    const val colorOwned = "#00FFFFFF"
+    //Black 60% alpha
+    const val colorLockable = "#99000000"
+    //Black 90% alpha
+    const val colorUnavailable = "#E6000000"
 
     fun getNodeStatus(viewName : String?): String {
 

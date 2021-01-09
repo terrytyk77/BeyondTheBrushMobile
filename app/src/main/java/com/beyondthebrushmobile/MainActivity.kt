@@ -26,7 +26,7 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var updateMethod : ()->Unit
+    lateinit var updateMethod : () -> Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -196,16 +196,4 @@ class MainActivity : AppCompatActivity() {
         .show()
         input.layoutParams = layoutParams
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
