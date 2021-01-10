@@ -49,8 +49,10 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         super.onCreate(savedInstanceState)
 
         //Set the current profile
-        if(currentUserFiles.itemID?.length!! > 0){
+        if(currentUserFiles.userProfiles.length() > 0 && currentUserFiles.currentProfileDropdownIndex > 1){
             currentProfileID = (currentUserFiles.currentProfileID + 2)
+        }else{
+            currentProfileID = currentUserFiles.currentProfileDropdownIndex
         }
 
 
@@ -102,6 +104,9 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
             val selectedItem = adapterView.getItemAtPosition(position) as String
             val itemIdAtPos = adapterView.getItemIdAtPosition(position)
 
+            //Update the current dropdown index value
+            currentUserFiles.currentProfileDropdownIndex = itemIdAtPos.toInt()
+
             //Changed the drop down variable
             currentUserFiles.dropDownID = position
 
@@ -144,6 +149,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
                     dropdown.setText (profileArray[currentProfileID])
                     dropdown.setAdapter(profileAdapter2) //Update with the new adapter
+
                     updateCurrentProfile(view, itemIdAtPos.toInt())
 
                 }

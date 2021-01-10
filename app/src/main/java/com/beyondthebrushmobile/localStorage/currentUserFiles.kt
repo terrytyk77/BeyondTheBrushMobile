@@ -15,6 +15,7 @@ object currentUserFiles{
     //1 -> Right
     //2 -> Left
     //3 -> Back
+    var currentProfileDropdownIndex : Int = 0
     var currentDirection : Int = 0
     var itemID : String? = ""
     var currentProfileID : Int = 0
