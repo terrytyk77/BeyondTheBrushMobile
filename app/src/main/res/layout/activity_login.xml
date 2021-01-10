@@ -23,22 +23,24 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo">
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/beyond_the_canvas_logo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
