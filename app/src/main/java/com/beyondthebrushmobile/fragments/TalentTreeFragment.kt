@@ -132,7 +132,7 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         //Loop through the unavailable nodes
         for(node in unavailableNodes){
             node?.setColorFilter(Color.parseColor(NodeCalculation.colorUnavailable))
-            node?.isClickable = false
+            node?.isClickable = true
             node?.tag = "unavailable"
         }
 

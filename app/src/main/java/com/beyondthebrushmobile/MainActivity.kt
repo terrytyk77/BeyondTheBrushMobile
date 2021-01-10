@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         var dialogBOX = MaterialAlertDialogBuilder(this)
             .setMessage(nodeObject.desc)
 
-                if(view.tag != "owned"){
+                if(view.tag == "lockable"){
 
                     dialogBOX.setTitle("Unlock " + nodeObject.name)
                     dialogBOX.setNegativeButton("Cancel"){dialog, which ->
@@ -134,7 +134,13 @@ class MainActivity : AppCompatActivity() {
                         }
 
                     }
-                }else{
+                }else if(view.tag == "unavailable"){
+                    dialogBOX.setNegativeButton("Ok"){dialog, which ->
+
+                    }
+                    dialogBOX.setTitle(nodeObject.name + ": Unavailable")
+                }
+                else{
                     dialogBOX.setNegativeButton("Ok"){dialog, which ->
 
                     }
