@@ -296,33 +296,45 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         fun undo(){
             if (pathArray.isNotEmpty()){
 
-                when(currentUserFiles.currentDirection) {
-                    0 -> {
-                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap1)
+                if(::holderExtraBitmap1.isInitialized){
+                    when(currentUserFiles.currentDirection) {
+                        0 -> {
+                            extraBitmap = Bitmap.createBitmap(holderExtraBitmap1)
+                        }
+                        1 -> {
+                            extraBitmap = Bitmap.createBitmap(holderExtraBitmap2)
+                        }
+                        2 -> {
+                            extraBitmap = Bitmap.createBitmap(holderExtraBitmap3)
+                        }
+                        3 -> {
+                            extraBitmap = Bitmap.createBitmap(holderExtraBitmap4)
+                        }
                     }
-                    1 -> {
-                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap2)
+
+                    extraCanvas = Canvas(extraBitmap)
+                    extraCanvas.drawColor(backgroundColor)
+
+                    pathArrayUndone[pathArray.keys.last()] = pathArray.values.last()
+                    pathArray.remove(pathArray.keys.last())
+
+                    pathArray.forEach { (path, paint) ->
+                        extraCanvas.drawPath(path, paint)
                     }
-                    2 -> {
-                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap3)
+
+                    this.invalidate()
+                }else{
+                    canvasClear()
+
+                    pathArrayUndone[pathArray.keys.last()] = pathArray.values.last()
+                    pathArray.remove(pathArray.keys.last())
+
+                    pathArray.forEach { (path, paint) ->
+                        extraCanvas.drawPath(path, paint)
                     }
-                    3 -> {
-                        extraBitmap = Bitmap.createBitmap(holderExtraBitmap4)
-                    }
+
+                    this.invalidate()
                 }
-
-                extraCanvas = Canvas(extraBitmap)
-                extraCanvas.drawColor(backgroundColor)
-
-                pathArrayUndone[pathArray.keys.last()] = pathArray.values.last()
-                pathArray.remove(pathArray.keys.last())
-
-                pathArray.forEach { (path, paint) ->
-                    extraCanvas.drawPath(path, paint)
-                }
-
-                this.invalidate()
-
             }else{
                 //To Be Replaced By A Toasted
                 println("Can't Undo More!")
@@ -331,6 +343,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
         fun redo(){
             if (pathArrayUndone.isNotEmpty()){
+                if(::holderExtraBitmap1.isInitialized){
                 when(currentUserFiles.currentDirection) {
                     0 -> {
                         extraBitmap = Bitmap.createBitmap(holderExtraBitmap1)
@@ -357,7 +370,19 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                 }
 
                 this.invalidate()
+                }
+                else{
+                    canvasClear()
 
+                    pathArray[pathArrayUndone.keys.last()] = pathArrayUndone.values.last()
+                    pathArrayUndone.remove(pathArray.keys.last())
+
+                    pathArray.forEach { (path, paint) ->
+                        extraCanvas.drawPath(path, paint)
+                    }
+
+                    this.invalidate()
+                }
             }else{
                 //To Be Replaced By A Toasted
                 println("Can't Redo More!")
