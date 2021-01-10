@@ -197,8 +197,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         extraCanvas.drawColor(backgroundColor)
 
         // Calculate a rectangular frame around the picture.
-        val inset = 30
-        frame = Rect(inset, inset, width - inset, height - inset)
+        frame = Rect(0, 0, width, height)
 
     }
 
@@ -398,6 +397,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             canvasClear()
             pathArray.clear()
             pathArrayUndone.clear()
+            this.invalidate()
         }
 
         fun setupDrawing(front: String, right: String, back: String, left: String){
