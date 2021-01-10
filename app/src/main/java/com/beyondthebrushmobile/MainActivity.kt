@@ -73,64 +73,76 @@ class MainActivity : AppCompatActivity() {
         val nodeObject = treeInformation.getNode(name)
 
         //Show the dialog
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Unlock " + nodeObject.name)
+        var dialogBOX = MaterialAlertDialogBuilder(this)
             .setMessage(nodeObject.desc)
-            .setNegativeButton("Cancel"){dialog, which ->
 
-            }
-            .setPositiveButton(nodeObject.price.toString() + " resources"){dialog, which ->
-                //Process the purchase
-                val yourBalance = currentUserFiles.userData?.getJSONObject("stats")?.getInt("resources")!!
+                if(view.tag != "owned"){
 
-                if(yourBalance >= nodeObject.price){
-                //Proccess the purchase
-                    //This user has enough money
-                    //Handle visuals
-                    progressCircle.visibility = View.VISIBLE
-                    darkOverlay.visibility = View.VISIBLE
+                    dialogBOX.setTitle("Unlock " + nodeObject.name)
+                    dialogBOX.setNegativeButton("Cancel"){dialog, which ->
 
-                    //Data to be sent
-                    val postBody = JSONObject()
-                        .put("id", currentUserFiles.userData!!.getString("_id"))
-                        .put("tree", currentUserFiles.userData!!.getJSONObject("talentTree"))
-                        .put("node", JSONObject(Gson().toJson(nodeObject)))
+                    }
 
-                    //Handle the connection to the server
-                    http.post(this, postBody, "/save/saveNode"){it->
+                    dialogBOX.setPositiveButton(nodeObject.price.toString() + " resources"){dialog, which ->
+                        //Process the purchase
+                        val yourBalance = currentUserFiles.userData?.getJSONObject("stats")?.getInt("resources")!!
 
-                        progressCircle.visibility= View.INVISIBLE
-                        darkOverlay.visibility = View.INVISIBLE
+                        if(yourBalance >= nodeObject.price){
+                            //Proccess the purchase
+                            //This user has enough money
+                            //Handle visuals
+                            progressCircle.visibility = View.VISIBLE
+                            darkOverlay.visibility = View.VISIBLE
 
-                        if(it!!.getBoolean("accepted")){
+                            //Data to be sent
+                            val postBody = JSONObject()
+                                    .put("id", currentUserFiles.userData!!.getString("_id"))
+                                    .put("tree", currentUserFiles.userData!!.getJSONObject("talentTree"))
+                                    .put("node", JSONObject(Gson().toJson(nodeObject)))
 
-                            //Update the current files
-                            currentUserFiles.userData!!.put("talentTree", it.getJSONObject("newtree"))
-                            currentUserFiles.userData!!.getJSONObject("stats").put("resources", it.getInt("resources"))
+                            //Handle the connection to the server
+                            http.post(this, postBody, "/save/saveNode"){it->
 
-                            //The node was purchased
-                            notification(it!!.getString("message"))
+                                progressCircle.visibility= View.INVISIBLE
+                                darkOverlay.visibility = View.INVISIBLE
 
-                            updateMethod()
+                                if(it!!.getBoolean("accepted")){
 
+                                    //Update the current files
+                                    currentUserFiles.userData!!.put("talentTree", it.getJSONObject("newtree"))
+                                    currentUserFiles.userData!!.getJSONObject("stats").put("resources", it.getInt("resources"))
+
+                                    //The node was purchased
+                                    notification(it!!.getString("message"))
+
+                                    updateMethod()
+
+                                }else{
+                                    //The node wasn't purchased
+                                    notification(it!!.getString("message"))
+                                }
+
+                            }
                         }else{
-                            //The node wasn't purchased
-                            notification(it!!.getString("message"))
+
+                            //In case the user does not have enough money for the purchase
+                            MaterialAlertDialogBuilder(this)
+                                    .setTitle("Not enough resources")
+                                    .setMessage("You are short by " +  (nodeObject.price - yourBalance).toString() + " resources.")
+                                    .setNegativeButton("OK"){_,_->}
+                                    .show()
                         }
 
                     }
                 }else{
+                    dialogBOX.setNegativeButton("Ok"){dialog, which ->
 
-                    //In case the user does not have enough money for the purchase
-                    MaterialAlertDialogBuilder(this)
-                        .setTitle("Not enough resources")
-                        .setMessage("You are short by " +  (nodeObject.price - yourBalance).toString() + " resources.")
-                        .setNegativeButton("OK"){_,_->}
-                        .show()
+                    }
+                    dialogBOX.setTitle(nodeObject.name + ": Owned!")
                 }
 
-            }
-            .show()
+
+            dialogBOX.show()
 
 
     }

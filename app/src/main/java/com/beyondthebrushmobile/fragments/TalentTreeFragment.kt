@@ -119,18 +119,21 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         for(node in ownedNodes){
             node?.setColorFilter(Color.parseColor(NodeCalculation.colorOwned))
             node?.isClickable = true
+            node?.tag = "owned"
         }
 
         //Loop through the lockable nodes
         for(node in lockableNodes){
             node?.setColorFilter(Color.parseColor(NodeCalculation.colorLockable))
             node?.isClickable = true
+            node?.tag = "lockable"
         }
 
         //Loop through the unavailable nodes
         for(node in unavailableNodes){
             node?.setColorFilter(Color.parseColor(NodeCalculation.colorUnavailable))
             node?.isClickable = false
+            node?.tag = "unavailable"
         }
 
     }
