@@ -18,7 +18,9 @@ import com.beyondthebrushmobile.classes.NodeCalculation
 import com.beyondthebrushmobile.classes.NodeLocation
 import com.beyondthebrushmobile.classes.TreeCanvas
 import com.beyondthebrushmobile.localStorage.currentUserFiles
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_talent_tree.*
+import org.json.JSONObject
 import kotlin.math.absoluteValue
 
 
@@ -72,9 +74,14 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         val lockableNodes = mutableListOf<ImageView?>()
         val unavailableNodes = mutableListOf<ImageView?>()
 
-        val number = currentUserFiles.userData!!.getJSONObject("stats").getInt("resources")
+        var number : JSONObject = JSONObject()
+        if(currentUserFiles.userData!!.has("stats")){
+            number = currentUserFiles.userData!!.getJSONObject("stats")
+        }
 
-        resourcesLabel.text = number.toString()
+        if(number != null){
+            resourcesLabel.text = number?.getInt("resources").toString()
+        }
 
         //Switch function to handle elements
         fun nodeSwitch(elementID: Int){
@@ -111,7 +118,7 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         //Loop through the owned nodes
         for(node in ownedNodes){
             node?.setColorFilter(Color.parseColor(NodeCalculation.colorOwned))
-            node?.isClickable = false
+            node?.isClickable = true
         }
 
         //Loop through the lockable nodes
