@@ -1,7 +1,7 @@
 package com.beyondthebrushmobile.fragments
 
+import android.app.Activity
 import android.graphics.Color
-import android.graphics.Insets.add
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,21 +13,18 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.beyondthebrushmobile.MainActivity
 import com.beyondthebrushmobile.R
-import com.beyondthebrushmobile.classes.ArmorProfile
 import com.beyondthebrushmobile.classes.NodeCalculation
 import com.beyondthebrushmobile.classes.NodeLocation
 import com.beyondthebrushmobile.classes.TreeCanvas
 import com.beyondthebrushmobile.localStorage.currentUserFiles
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_talent_tree.*
 import org.json.JSONObject
-import kotlin.math.absoluteValue
 
 
 class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View?
     {
         // Inflate the layout for this fragment
@@ -50,7 +47,7 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
             nodeImages.add(NodeLocation(node10))
 
             val relativeLayout = rootView.findViewById(R.id.TreeTalent) as RelativeLayout
-            relativeLayout.addView(activity?.let { TreeCanvas(it, nodeImages)})
+            relativeLayout.addView(activity?.let { TreeCanvas(it, nodeImages) })
 
         }, 0)
 
@@ -116,7 +113,20 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
         nodeSwitch(R.id.node10)
 
         //Loop through the owned nodes
-        for(node in ownedNodes){
+        for(node: ImageView? in ownedNodes){
+            //Get Node Id To String
+            val stringId = node?.let {resources.getResourceEntryName(it.id)}
+
+            //Get Id in Int Of The Background of the node
+            val backgroundId = resources.getIdentifier("${stringId}_background", "id", activity?.packageName)
+
+            //Get the Actual ImageView
+            val nodeBackground = view?.findViewById(backgroundId) as ImageView
+
+            //Set Background Color of Owned Node to Red
+            nodeBackground.setColorFilter(Color.parseColor(NodeCalculation.colorBackgroundOwned))
+
+            //Change Node Color
             node?.setColorFilter(Color.parseColor(NodeCalculation.colorOwned))
             node?.isClickable = true
             node?.tag = "owned"
