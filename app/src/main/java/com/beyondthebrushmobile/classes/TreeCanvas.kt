@@ -32,44 +32,50 @@ constructor(context: Context, var nodeImagesReceived:ArrayList<NodeLocation>, at
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
 
+        val nodeMiddle = arrayListOf<PointF>()
+
+        nodeImagesReceived.forEach{ node ->
+            nodeMiddle.add(node.getMiddle())
+        }
+
         //FlashStrike to ToArms
-        canvas?.drawLine(nodeImagesReceived[0].getMiddle().x, nodeImagesReceived[0].getMiddle().y, nodeImagesReceived[1].getMiddle().x, nodeImagesReceived[1].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[0].x, nodeMiddle[0].y, nodeMiddle[1].x, nodeMiddle[1].y, paint)
 
         //FlashStrike to SteelChopper
-        canvas?.drawLine(nodeImagesReceived[0].getMiddle().x, nodeImagesReceived[0].getMiddle().y, nodeImagesReceived[2].getMiddle().x, nodeImagesReceived[2].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[0].x, nodeMiddle[0].y, nodeMiddle[2].x, nodeMiddle[2].y, paint)
 
         //FlashStrike to ShieldBlock
-        canvas?.drawLine(nodeImagesReceived[0].getMiddle().x, nodeImagesReceived[0].getMiddle().y, nodeImagesReceived[3].getMiddle().x, nodeImagesReceived[3].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[0].x, nodeMiddle[0].y, nodeMiddle[3].x, nodeMiddle[3].y, paint)
 
         //ToArms to BattleThirst
-        canvas?.drawLine(nodeImagesReceived[1].getMiddle().x, nodeImagesReceived[1].getMiddle().y, nodeImagesReceived[4].getMiddle().x, nodeImagesReceived[4].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[1].x, nodeMiddle[1].y, nodeMiddle[4].x, nodeMiddle[4].y, paint)
 
         //BattleThirst to DemandForAction
-        canvas?.drawLine(nodeImagesReceived[4].getMiddle().x, nodeImagesReceived[4].getMiddle().y, nodeImagesReceived[8].getMiddle().x, nodeImagesReceived[8].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[4].x, nodeMiddle[4].y, nodeMiddle[8].x, nodeMiddle[8].y, paint)
 
         //DemandForAction to OverKill
-        canvas?.drawLine(nodeImagesReceived[8].getMiddle().x, nodeImagesReceived[8].getMiddle().y, nodeImagesReceived[10].getMiddle().x, nodeImagesReceived[10].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[8].x, nodeMiddle[8].y, nodeMiddle[10].x, nodeMiddle[10].y, paint)
 
         //ShieldBlock to BubbleUp
-        canvas?.drawLine(nodeImagesReceived[3].getMiddle().x, nodeImagesReceived[3].getMiddle().y, nodeImagesReceived[7].getMiddle().x, nodeImagesReceived[7].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[3].x, nodeMiddle[3].y, nodeMiddle[7].x, nodeMiddle[7].y, paint)
 
         //BubbleUp to ThoughSkin
-        canvas?.drawLine(nodeImagesReceived[7].getMiddle().x, nodeImagesReceived[7].getMiddle().y, nodeImagesReceived[9].getMiddle().x, nodeImagesReceived[9].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[7].x, nodeMiddle[7].y, nodeMiddle[9].x, nodeMiddle[9].y, paint)
 
         //ThoughSkin to OverKill
-        canvas?.drawLine(nodeImagesReceived[9].getMiddle().x, nodeImagesReceived[9].getMiddle().y, nodeImagesReceived[10].getMiddle().x, nodeImagesReceived[10].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[9].x, nodeMiddle[9].y, nodeMiddle[10].x, nodeMiddle[10].y, paint)
 
         //SteelChopper to GreedIsGood
-        canvas?.drawLine(nodeImagesReceived[2].getMiddle().x, nodeImagesReceived[2].getMiddle().y, nodeImagesReceived[5].getMiddle().x, nodeImagesReceived[5].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[2].x, nodeMiddle[2].y, nodeMiddle[5].x, nodeMiddle[5].y, paint)
 
         //SteelChopper to GoldDigger
-        canvas?.drawLine(nodeImagesReceived[2].getMiddle().x, nodeImagesReceived[2].getMiddle().y, nodeImagesReceived[6].getMiddle().x, nodeImagesReceived[6].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[2].x, nodeMiddle[2].y, nodeMiddle[6].x, nodeMiddle[6].y, paint)
 
         //GreedIsGood to OverKill
-        canvas?.drawLine(nodeImagesReceived[5].getMiddle().x, nodeImagesReceived[5].getMiddle().y, nodeImagesReceived[10].getMiddle().x, nodeImagesReceived[10].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[5].x, nodeMiddle[5].y, nodeMiddle[10].x, nodeMiddle[10].y, paint)
 
         //GoldDigger to OverKill
-        canvas?.drawLine(nodeImagesReceived[6].getMiddle().x, nodeImagesReceived[6].getMiddle().y, nodeImagesReceived[10].getMiddle().x, nodeImagesReceived[10].getMiddle().y, paint)
+        canvas?.drawLine(nodeMiddle[6].x, nodeMiddle[6].y, nodeMiddle[10].x, nodeMiddle[10].y, paint)
 
     }
 }
