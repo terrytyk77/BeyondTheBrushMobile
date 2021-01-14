@@ -9,7 +9,7 @@ object NodeCalculation {
     //White 0% alpha
     const val colorOwned = "#00FFFFFF"
     //Red 90% alpha
-    const val colorBackgroundOwned = "#E6F4210F"
+    const val colorBackgroundOwned = "#FF6d0d05"
     //Black 60% alpha
     const val colorLockable = "#99000000"
     //Black 90% alpha
