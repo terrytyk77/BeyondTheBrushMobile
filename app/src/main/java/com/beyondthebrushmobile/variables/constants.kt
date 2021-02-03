@@ -1,7 +1,7 @@
  package com.beyondthebrushmobile.variables
 
 //This variable holds the URL used in HTTP requests
-    const val SERVER_URL = "http://10.0.2.2:3000"
+    const val SERVER_URL = "http://52.17.173.15:3000"
 
 //Armor save route
     const val ARMOR_URL = "/save/armor"

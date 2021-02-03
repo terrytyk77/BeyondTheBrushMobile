@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         fragmentManager(ArmorDrawingFragment())
 
         bottom_nav_bar.setOnNavigationItemSelectedListener {
