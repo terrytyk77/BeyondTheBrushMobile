@@ -21,11 +21,11 @@
         android:contentDescription="@string/todo" />
 
 
-    <TextView
-        android:id="@+id/armor_name"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/armor_image"
-        android:gravity="center"/>
+<!--    <TextView-->
+<!--        android:id="@+id/armor_name"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_below="@id/armor_image"-->
+<!--        android:gravity="center"/>-->
 
 </RelativeLayout>

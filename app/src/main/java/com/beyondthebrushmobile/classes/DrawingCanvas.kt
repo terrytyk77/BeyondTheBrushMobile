@@ -462,7 +462,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                 var imageBytes4 = baos4.toByteArray()
                 var encodedImage4 = Base64.encodeToString(imageBytes4, Base64.DEFAULT)
                 baos4.close()
-
             //__________||
 
             val postData = JSONObject()

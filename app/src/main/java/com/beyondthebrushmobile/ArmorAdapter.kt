@@ -26,7 +26,7 @@ class ArmorAdapter (var itemList:ArrayList<ArmorProfile>,var context:Context) : 
         val itView = inflater.inflate(R.layout.armor_item,null)
 
         itView.findViewById<ImageView>(R.id.armor_image).setImageResource(gridItem.armorImage)
-        itView.findViewById<TextView>(R.id.armor_name).text = gridItem.armorName
+        //itView.findViewById<TextView>(R.id.armor_name).text = gridItem.armorName
 
         //Look for the image on the profiles
         var base64String : String = ""

@@ -2,6 +2,8 @@ package com.beyondthebrushmobile.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,7 @@ import com.beyondthebrushmobile.variables.Profile_ID
 import com.beyondthebrushmobile.variables.profile_limit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.armor_item.*
 import kotlinx.android.synthetic.main.fragment_armor_drawing.*
 
 
@@ -221,8 +224,11 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
             armorGridView = view.findViewById(R.id.armor_grid_view)
         }
 
-
         armorGridView.adapter = armorAdapter
+
+        view.post {
+            armorGridView.verticalSpacing = ((armorGridView.height - armor_paint.height * 3) / 3)
+        }
 
         armorGridView.setOnItemClickListener { parent, view, position, id ->
             if(currentProfileID == 0 || currentProfileID == 1){
@@ -233,7 +239,6 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                 enterDrawingRoom(view, armorType)
             }
         }
-
     }
 
    private fun enterDrawingRoom(view: View, armorID : String){

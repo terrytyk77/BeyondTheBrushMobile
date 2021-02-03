@@ -166,7 +166,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
         app:srcCompat="@drawable/white_square"
-        app:tint="#202020" />
+        app:tint="#202020"
+        android:contentDescription="@string/bottom_bar" />
 
     <ImageView
         android:id="@+id/Reset"
@@ -182,40 +183,37 @@
         app:srcCompat="@drawable/ic_reset"
         tools:ignore="VectorDrawableCompat" />
 
-    <TextView
+    <ImageView
         android:id="@+id/DrawingClosingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
         android:onClick="closeDrawing"
-        android:text="❌"
-        android:textColor="#4CAF50"
-        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_close"
+        tools:ignore="UsingOnClickInXml,VectorDrawableCompat" />
 
-    <TextView
+    <ImageView
         android:id="@+id/DrawingSaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:onClick="saveImage"
-        android:text="✔"
-        android:textColor="#4CAF50"
-        android:textSize="35sp"
-        app:layout_constraintBottom_toBottomOf="@+id/DrawingClosingButton"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_check"
+        tools:ignore="UsingOnClickInXml,VectorDrawableCompat" />
 
     <TextView
         android:id="@+id/currentSideText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"

@@ -26,10 +26,15 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="70dp"
+        app:itemHorizontalTranslationEnabled="true"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="40dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
-        android:background="@color/purple_200"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        android:background="@color/black"
+        app:itemRippleColor="#4F4F4F"
         app:menu="@menu/bottom_nav_bar" />
 
 </RelativeLayout>

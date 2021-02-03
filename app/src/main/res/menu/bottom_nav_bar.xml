@@ -3,17 +3,16 @@
 
     <item
         android:id="@+id/ic_armor_drawing"
-        android:icon="@drawable/beyond_the_canvas_logo"
+        android:icon="@drawable/ic_helm"
         android:title="Draw" />
 
     <item
         android:id="@+id/ic_talent_tree"
-        android:icon="@drawable/beyond_the_canvas_logo"
+        android:icon="@drawable/ic_tree"
         android:title="Tree" />
 
     <item
         android:id="@+id/ic_mini_game"
-        android:icon="@drawable/beyond_the_canvas_logo"
+        android:icon="@drawable/ic_treasure"
         android:title="Game" />
-
 </menu>
