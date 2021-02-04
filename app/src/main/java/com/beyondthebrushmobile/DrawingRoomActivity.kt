@@ -531,16 +531,16 @@ class DrawingRoomActivity: AppCompatActivity() {
     fun closeDrawing(view: View){
         //Move to the main activity
         val intent = Intent(this, MainActivity::class.java)
-        finish()
         startActivity(intent)
+        finishAffinity()
     }
 
     fun saveImage(view : View){
         drawingCanvas.createAnImage(this){
 
             val intent = Intent(this, MainActivity::class.java)
-            finish()
             startActivity(intent)
+            finishAffinity()
 
             http.post(this, it, ARMOR_URL){
                 //Print the response from the server

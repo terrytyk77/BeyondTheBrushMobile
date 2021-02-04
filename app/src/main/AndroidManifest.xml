@@ -26,9 +26,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".DrawingRoomActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:noHistory="true" />
         <activity android:name=".LoginActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:noHistory="true" />
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
     </application>

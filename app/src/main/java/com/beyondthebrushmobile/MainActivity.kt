@@ -2,13 +2,18 @@ package com.beyondthebrushmobile
 
 import android.annotation.SuppressLint
 import android.app.Notification
+import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat.getFont
 import androidx.fragment.app.Fragment
 import com.beyondthebrushmobile.classes.NodeCalculation
 import com.beyondthebrushmobile.classes.treeInformation
@@ -59,10 +64,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun notification(message : String){
-        MaterialAlertDialogBuilder(this)
+        val popup = MaterialAlertDialogBuilder(this)
+            popup
                 .setTitle(message)
-                .setItems(arrayOf("ok")){_,_->}
-                .show()
+                .setPositiveButton("ok") { _: DialogInterface, _: Int -> }
+
+        val dialog = popup.create()
+        dialog.show()
+
+        val buttonPositive = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+        buttonPositive.setBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+        buttonPositive.setTextColor(ContextCompat.getColor(this, R.color.white))
     }
 
     //Clicked on the node
@@ -127,31 +139,40 @@ class MainActivity : AppCompatActivity() {
                         }else{
 
                             //In case the user does not have enough money for the purchase
-                            MaterialAlertDialogBuilder(this)
-                                    .setTitle("Not enough resources")
-                                    .setMessage("You are short by " +  (nodeObject.price - yourBalance).toString() + " resources.")
-                                    .setNegativeButton("OK"){_,_->}
-                                    .show()
+                            val popup = MaterialAlertDialogBuilder(this)
+                            popup
+                                .setTitle("Not enough resources")
+                                .setMessage("You are short by " +  (nodeObject.price - yourBalance).toString() + " resources.")
+                                .setPositiveButton("OK"){_,_->}
+
+                            val noMoneyPopUp = popup.create()
+                            noMoneyPopUp.show()
+
+                            val buttonPositive = noMoneyPopUp.getButton(DialogInterface.BUTTON_POSITIVE)
+                            buttonPositive.setBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+                            buttonPositive.setTextColor(ContextCompat.getColor(this, R.color.white))
                         }
 
                     }
                 }else if(view.tag == "unavailable"){
-                    dialogBOX.setNegativeButton("Ok"){dialog, which ->
+                    dialogBOX.setPositiveButton("Ok"){dialog, which ->
 
                     }
                     dialogBOX.setTitle(nodeObject.name + ": Unavailable")
                 }
                 else{
-                    dialogBOX.setNegativeButton("Ok"){dialog, which ->
+                    dialogBOX.setPositiveButton("Ok"){dialog, which ->
 
                     }
                     dialogBOX.setTitle(nodeObject.name + ": Owned!")
                 }
 
+        val dialog = dialogBOX.create()
+        dialog.show()
 
-            dialogBOX.show()
-
-
+        val buttonPositive = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+        buttonPositive.setBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+        buttonPositive.setTextColor(ContextCompat.getColor(this, R.color.white))
     }
 
 
@@ -160,26 +181,26 @@ class MainActivity : AppCompatActivity() {
         //Create Custom Title
         var title = TextView(this)
         title.text = "Choose your preset"
-        title.setPadding(20,80,20,20)
-        title.gravity = Gravity.CENTER
-        title.setTextColor(Color.BLACK);
+        title.setPadding(60,60,20,20)
+        title.setTextColor(Color.BLACK)
         title.textSize = 20f
 
         //Create Layout for the Input
-        val layoutParams = FrameLayout.LayoutParams(600, 150)
+        val layoutParams = FrameLayout.LayoutParams(600, 160)
         layoutParams.setMargins(60,0,0,20)
 
         //Create Custom Input
         val input = EditText(this)
         input.hint = "Profile name..."
-        input.setTextColor(Color.BLACK);
+        input.setTextColor(Color.BLACK)
         input.textSize = 16f
 
         //Create Array of Profiles
         val items = arrayOf("Profile 1", "Profile 2")
 
+        val popUpProfile = MaterialAlertDialogBuilder(this)
 
-        MaterialAlertDialogBuilder(this)
+        popUpProfile
         // Add customization options here
         .setCustomTitle(title)
         .setView(input)
@@ -214,7 +235,14 @@ class MainActivity : AppCompatActivity() {
                 notification("Failed! Name not given!")
             }
         }
-        .show()
+
+        val popUpProfileDialog = popUpProfile.create()
+        popUpProfileDialog.show()
+
+        val buttonNegative = popUpProfileDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+        buttonNegative.setBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+        buttonNegative.setTextColor(ContextCompat.getColor(this, R.color.white))
+
         input.layoutParams = layoutParams
     }
 }

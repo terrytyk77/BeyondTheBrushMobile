@@ -101,7 +101,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         }
 
         //Canvas borders
-        canvas?.drawRect(frame, createBrush(newColor = colorRGB(255, 255, 255)))
+        canvas?.drawRect(frame, createBrush(newColor = colorRGB(255, 255, 255), newStrokeSize = 20f))
 
     }
 

@@ -16,6 +16,7 @@ import com.beyondthebrushmobile.R
 import com.beyondthebrushmobile.classes.ArmorProfile
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import com.beyondthebrushmobile.variables.Armor_ID
+import com.beyondthebrushmobile.variables.Armor_View_Size
 import com.beyondthebrushmobile.variables.Profile_ID
 import com.beyondthebrushmobile.variables.profile_limit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -226,8 +227,12 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
         armorGridView.adapter = armorAdapter
 
+        if(Armor_View_Size == null)
         view.post {
             armorGridView.verticalSpacing = ((armorGridView.height - armor_paint.height * 3) / 3)
+            Armor_View_Size = ((armorGridView.height - armor_paint.height * 3) / 3)
+        }else{
+            armorGridView.verticalSpacing = Armor_View_Size!!
         }
 
         armorGridView.setOnItemClickListener { parent, view, position, id ->

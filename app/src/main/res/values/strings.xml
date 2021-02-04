@@ -7,14 +7,14 @@
     <string name="background">Background</string>
 
     <!--Place holders for text inputs-->
-    <string name="password">password…</string>
-    <string name="username">username…</string>
+    <string name="password">Password…</string>
+    <string name="username">Username…</string>
 
     <!-- Fragments buttons text -->
     <string name="login">Login!</string>
     <string name="sign_up">Sign up!</string>
-    <string name="repeat_password">repeat password…</string>
-    <string name="email">email…</string>
+    <string name="repeat_password">Repeat password…</string>
+    <string name="email">Email…</string>
     <string name="image_of_the_current_item">Image of the current item</string>
     <string name="undo">Undo</string>
     <string name="send">Send</string>
@@ -22,6 +22,7 @@
     <string name="reset">Reset</string>
     <string name="right">right</string>
     <string name="left">Left</string>
+    <string name="profiles">Profiles</string>
     <string name="todo">TODO</string>
     <string name="talent_tree_background">Talent Tree Background</string>
     <string name="slot_background">slot background</string>

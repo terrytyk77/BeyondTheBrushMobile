@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cobblestone_background" />
+        app:srcCompat="@drawable/cobblestone_background_dark" />
 
     <!--Item portrait-->
     <ImageView
@@ -100,7 +100,7 @@
         android:id="@+id/Undo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:contentDescription="@string/undo"
         android:text="@string/undo"
         app:layout_constraintStart_toStartOf="@+id/itemPortrait"
@@ -112,7 +112,7 @@
         android:id="@+id/Redo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:contentDescription="@string/redo"
         android:text="@string/redo"
         app:layout_constraintEnd_toEndOf="@+id/itemPortrait"
@@ -124,7 +124,7 @@
         android:id="@+id/moveToTheRight"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/right"
         android:text="@string/right"
@@ -140,7 +140,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:contentDescription="@string/left"
         android:text="@string/left"
         app:layout_constraintBottom_toBottomOf="@+id/Undo"
@@ -166,7 +166,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background"
         app:srcCompat="@drawable/white_square"
-        app:tint="#202020"
+        app:tint="#000000"
         android:contentDescription="@string/bottom_bar" />
 
     <ImageView
@@ -214,6 +214,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:fontFamily="@font/constantia_regular"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"

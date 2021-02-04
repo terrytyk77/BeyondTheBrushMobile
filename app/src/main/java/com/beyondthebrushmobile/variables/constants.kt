@@ -34,5 +34,7 @@
     const val Profile_ID = "profileID"
     //________________||
 
+    var Armor_View_Size: Int? = null
+
 //______________||
 
