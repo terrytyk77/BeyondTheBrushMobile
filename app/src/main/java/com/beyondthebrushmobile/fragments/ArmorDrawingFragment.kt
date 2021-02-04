@@ -2,8 +2,6 @@ package com.beyondthebrushmobile.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,11 +17,7 @@ import com.beyondthebrushmobile.variables.Armor_ID
 import com.beyondthebrushmobile.variables.Armor_View_Size
 import com.beyondthebrushmobile.variables.Profile_ID
 import com.beyondthebrushmobile.variables.profile_limit
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.armor_item.*
-import kotlinx.android.synthetic.main.fragment_armor_drawing.*
-
 
 class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
 
@@ -55,10 +49,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
         //Set the current profile
         if(currentUserFiles.userProfiles.length() > 0 && currentUserFiles.currentProfileDropdownIndex > 1){
             currentProfileID = (currentUserFiles.currentProfileID + 2)
-        }else{
-            currentProfileID = currentUserFiles.currentProfileDropdownIndex
         }
-
 
         val profileArray: MutableList<String> = ArrayList()
         profileArray.add("Profile 1 \uD83D\uDD12")
