@@ -1,8 +1,8 @@
 <resources>
 
     <!--Images descriptions-->
-    <string name="app_name">BeyondTheBrushMobile</string>
-    <string name="logo">BeyondTheBrushLogo</string>
+    <string name="app_name">BeyondTheCanvas</string>
+    <string name="logo">BeyondTheCanvasLogo</string>
     <string name="bottom_bar">Bottom bar</string>
     <string name="background">Background</string>
 
