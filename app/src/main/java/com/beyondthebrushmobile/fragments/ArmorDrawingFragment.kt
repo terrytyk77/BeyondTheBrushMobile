@@ -111,7 +111,10 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
             }
 
             //Reset the current profile ID
-            currentProfileID = itemIdAtPos.toInt()
+            if(position - 2 < currentUserFiles.userProfiles.length()){
+                currentProfileID = itemIdAtPos.toInt()
+            }
+
 
             //Clicked the create new profile
             if(itemIdAtPos.toInt() + 1 == profileArray.size && currentUserFiles.userProfiles.length() < profile_limit){
