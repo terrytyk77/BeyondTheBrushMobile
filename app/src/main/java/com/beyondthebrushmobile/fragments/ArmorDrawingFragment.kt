@@ -106,7 +106,7 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
             currentUserFiles.dropDownID = position
 
             //Changed the profile
-            if(position >= 2){
+            if(position >= 2 && position - 2 < currentUserFiles.userProfiles.length()){
                 currentUserFiles.currentProfileID = position - 2
             }
 
