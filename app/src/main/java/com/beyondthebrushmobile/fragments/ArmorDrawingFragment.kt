@@ -145,6 +145,8 @@ class ArmorDrawingFragment: Fragment(R.layout.fragment_armor_drawing) {
                             R.layout.profile_drop_down_item,
                             profileArray2)
 
+                    currentProfileID = itemIdAtPos.toInt()
+
                     dropdown.setText (profileArray[currentProfileID])
                     dropdown.setAdapter(profileAdapter2) //Update with the new adapter
 

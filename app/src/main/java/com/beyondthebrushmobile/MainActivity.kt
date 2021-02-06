@@ -221,6 +221,7 @@ class MainActivity : AppCompatActivity() {
                             //Add the profile that was just created
                             currentUserFiles.userProfiles.put(it?.getJSONObject("body"))
 
+
                             //The profiles was created!
                             toBeRun(which)
                             notification(it.getString("result"))
