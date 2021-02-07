@@ -1,7 +1,5 @@
 package com.beyondthebrushmobile.classes
 
-import android.widget.ImageView
-import com.beyondthebrushmobile.R
 import com.beyondthebrushmobile.localStorage.currentUserFiles
 import org.json.JSONObject
 

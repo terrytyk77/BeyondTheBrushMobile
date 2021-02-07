@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/hall">
+    android:onClick="startGame"
+    android:background="@drawable/hall"
+    tools:ignore="UsingOnClickInXml">
 
     <TextView
         android:id="@+id/startGame"
@@ -11,9 +13,32 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/start"
-        android:onClick="startGame"
         android:textColor="#FFFFFF"
         android:textSize="42sp"
+        tools:ignore="UsingOnClickInXml" />
+
+    <TextView
+        android:id="@+id/gameDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Achieve highest scores!"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        tools:ignore="UsingOnClickInXml" />
+
+    <TextView
+        android:id="@+id/gameObjective"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gameDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Do not kill the villager!"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         tools:ignore="UsingOnClickInXml" />
 
 </RelativeLayout>
