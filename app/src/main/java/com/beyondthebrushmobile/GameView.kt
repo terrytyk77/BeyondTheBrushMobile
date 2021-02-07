@@ -18,6 +18,10 @@ class GameView(private val activity: MiniGameActivity, screenX:Int, screenY:Int)
     private var gameStartTimerDone: Boolean = false
     private var clickToExit: Boolean = false
 
+    //Screen Size
+    private val size = Point(screenX, screenY)
+    private val scale = PointF(size.x/1080f, size.y/2400f)
+
     //Thread
     private var thread : Thread? = null
 
@@ -32,7 +36,6 @@ class GameView(private val activity: MiniGameActivity, screenX:Int, screenY:Int)
     private  var gameOverPaint: Paint = Paint()
 
     private lateinit var npcs:ArrayList<Npc>
-    private val size = Point(screenX, screenY)
 
     //Thread Calling Every Frame
     override fun run() {
@@ -49,22 +52,22 @@ class GameView(private val activity: MiniGameActivity, screenX:Int, screenY:Int)
         thread!!.start()
 
         //Paint Option
-        paint.textSize = 128f
-        paint.setShadowLayer(10f,0f,0f,Color.BLACK)
+        paint.textSize = 128f * scale.x
+        paint.setShadowLayer(10f * scale.x,0f,0f,Color.BLACK)
         paint.color = Color.WHITE
         paint.isAntiAlias = true
 
         //Paint Option for Start Counter
-        counterPaint.textSize = 300f
+        counterPaint.textSize = 300f * scale.x
         counterPaint.color = Color.WHITE
-        counterPaint.setShadowLayer(10f,0f,0f,Color.BLACK)
+        counterPaint.setShadowLayer(10f * scale.x,0f,0f,Color.BLACK)
         counterPaint.textAlign = Paint.Align.CENTER
         counterPaint.isAntiAlias = true
 
         //Paint Option for Game Over
         gameOverPaint.textSize = 180f
         gameOverPaint.color = Color.WHITE
-        gameOverPaint.setShadowLayer(10f,0f,0f,Color.RED)
+        gameOverPaint.setShadowLayer(10f * scale.x,0f,0f,Color.RED)
         gameOverPaint.textAlign = Paint.Align.CENTER
         gameOverPaint.isAntiAlias = true
 
@@ -72,11 +75,11 @@ class GameView(private val activity: MiniGameActivity, screenX:Int, screenY:Int)
         npcs = ArrayList(6)
         for (i in 0..5)
         {
-            npcs.add(Npc(size.x, size.y, resources, false))
+            npcs.add(Npc(size, scale, resources, false))
         }
 
         //Hostage Initialization
-        npcs.add(Npc(size.x, size.y, resources, true))
+        npcs.add(Npc(size, scale, resources, true))
 
         //Start Game
         isPlaying = true
@@ -118,7 +121,7 @@ class GameView(private val activity: MiniGameActivity, screenX:Int, screenY:Int)
         //The Update Loop     ||
             if(gameStartTimerDone) {
                 npcs.forEach {
-                    it.y += it.speed
+                    it.y += (it.speed * scale.y).toInt()
 
                     if(it.y > size.y){
                        it.reset()
@@ -153,7 +156,7 @@ class GameView(private val activity: MiniGameActivity, screenX:Int, screenY:Int)
                     canvas.drawText("Game Over", size.x/2.toFloat(), size.y/2.toFloat(), gameOverPaint)
                 }
                 //Score Counter Text
-                canvas.drawText("score: $enemyKilledCounter", 50f, 150f, paint)
+                canvas.drawText("score: $enemyKilledCounter", 50f * scale.x, 150f * scale.y, paint)
             }
             else{
                 //Before Game Start
