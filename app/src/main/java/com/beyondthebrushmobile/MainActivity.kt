@@ -3,6 +3,7 @@ package com.beyondthebrushmobile
 import android.annotation.SuppressLint
 import android.app.Notification
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.Typeface
@@ -245,5 +246,10 @@ class MainActivity : AppCompatActivity() {
         buttonNegative.setTextColor(ContextCompat.getColor(this, R.color.white))
 
         input.layoutParams = layoutParams
+    }
+
+    fun startGame(view: View){
+        val intent = Intent(this, MiniGameActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -76,9 +76,7 @@ class TalentTreeFragment: Fragment(R.layout.fragment_talent_tree) {
             number = currentUserFiles.userData!!.getJSONObject("stats")
         }
 
-        if(number != null){
-            resourcesLabel.text = number?.getInt("resources").toString()
-        }
+        resourcesLabel.text = number.getInt("resources").toString()
 
         //Switch function to handle elements
         fun nodeSwitch(elementID: Int){

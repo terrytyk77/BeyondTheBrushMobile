@@ -8,8 +8,8 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon"
-        android:roundIcon="@mipmap/ic_icon_round"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BeyondTheBrushMobile"
         android:usesCleartextTraffic="true"
@@ -17,21 +17,29 @@
         <activity
             android:name=".SplashActivity"
             android:noHistory="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Wallpaper.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DrawingRoomActivity"
-            android:screenOrientation="portrait"
-            android:noHistory="true" />
-        <activity android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:noHistory="true" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".DrawingRoomActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MiniGameActivity"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
             android:screenOrientation="portrait"/>
     </application>
 
