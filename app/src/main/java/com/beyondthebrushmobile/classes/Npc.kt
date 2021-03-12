@@ -11,9 +11,7 @@ class Npc internal constructor(
         val hostage : Boolean
 ) {
 
-
-
-    var enemyId = if(hostage){
+    private var enemyId = if(hostage){
         R.drawable.hostage
     }else{
         when((0 until 5).random()){
@@ -27,8 +25,8 @@ class Npc internal constructor(
         }
     }
 
-    private var minSpeed : Int = 200
-    private var maxSpeed : Int = 400
+    private var minSpeed : Int = 75
+    private var maxSpeed : Int = 200
     var speed : Int = (minSpeed until maxSpeed).random()
 
 
